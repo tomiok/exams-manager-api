@@ -1,0 +1,17 @@
+spring:
+  main:
+    banner-mode: "off"
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      INDENT_OUTPUT: true
+server:
+  context-path: /mi-profe
+  port: 8090
+
+---
+spring:
+  profiles: default
+  data:
+    mongodb:
+      database: profelocal
