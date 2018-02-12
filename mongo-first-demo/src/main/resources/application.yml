@@ -8,6 +8,8 @@ spring:
 server:
   context-path: /mi-profe
   port: 8090
+  compression:
+    enabled: true
 
 ---
 spring:

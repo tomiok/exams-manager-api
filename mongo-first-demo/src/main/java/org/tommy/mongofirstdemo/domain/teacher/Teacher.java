@@ -1,5 +1,6 @@
-package org.tommy.mongofirstdemo.domain.techer;
+package org.tommy.mongofirstdemo.domain.teacher;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import org.tommy.mongofirstdemo.domain.Address;
 public class Teacher {
 
   @Id
-  private long id;
+  private String id;
 
   private String firstName;
 
@@ -31,10 +32,22 @@ public class Teacher {
 
   private Comment comment;
 
+  private List<Signature> signatures;
+
   private Teacher() {}
 
+  private Teacher(final String firstName, final String lastName, final String nickName, final String password,
+                  final Address address, final Comment comment) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.nickName = nickName;
+    this.password = password;
+    this.address = address;
+    this.comment = comment;
+  }
+
   public static Teacher from(TeacherComponent.TeacherRequest request) {
-    return new Teacher(0, request.getFirstName(), request.getLastName(),
+    return new Teacher(request.getFirstName(), request.getLastName(),
         request.getNickName(), request.getPassword(),
         Address.from(request.getLat(), request.getLon(), request.getStreet(), request.getCity(), request.getNumber()),
         new Comment(request.getComment().getComment()));

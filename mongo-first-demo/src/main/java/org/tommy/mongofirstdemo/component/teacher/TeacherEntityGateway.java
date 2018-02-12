@@ -1,17 +1,23 @@
 package org.tommy.mongofirstdemo.component.teacher;
 
-import org.tommy.mongofirstdemo.domain.techer.Teacher;
-import org.tommy.mongofirstdemo.domain.techer.TeacherRepository;
+import org.apache.commons.lang3.Validate;
+import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
 
 public class TeacherEntityGateway {
 
   private final TeacherRepository repository;
 
-  public TeacherEntityGateway(final TeacherRepository repository) {
+  TeacherEntityGateway(final TeacherRepository repository) {
+    Validate.notNull(repository, "repository bean cannot be null");
     this.repository = repository;
   }
 
-  public TeacherComponent.TeacherResponse transform(final TeacherComponent.TeacherRequest request) {
+  TeacherComponent.TeacherResponse findById(final String id) {
+    return new TeacherComponent.TeacherResponse(repository.findOne(id));
+  }
+
+  TeacherComponent.TeacherResponse transform(final TeacherComponent.TeacherRequest request) {
     TeacherComponent.TeacherResponse response = new TeacherComponent.TeacherResponse();
 
     Teacher teacher = save(request);
@@ -22,6 +28,7 @@ public class TeacherEntityGateway {
     response.setFirstName(teacher.getFirstName());
     response.setLastName(teacher.getLastName());
     response.setNickName(teacher.getNickName());
+    response.setTeacherId(teacher.getId());
 
     return response;
   }
@@ -31,6 +38,8 @@ public class TeacherEntityGateway {
   }
 
   private Teacher save(final TeacherComponent.TeacherRequest request) {
+    repository.deleteAll(); //TODO remove this some time in the future
+
     return repository.save(transformToModel(request));
   }
 }

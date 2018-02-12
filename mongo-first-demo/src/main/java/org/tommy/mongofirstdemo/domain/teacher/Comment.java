@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.domain.techer;
+package org.tommy.mongofirstdemo.domain.teacher;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,14 +12,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Comment {
 
   @Id
-  private long id;
+  private String id;
 
   @Length(min = 15, max = 250)
   private String description;
 
   private Comment() {}
 
-  public Comment(final String description) {
+  Comment(final String description) {
     this.description = description;
   }
 }

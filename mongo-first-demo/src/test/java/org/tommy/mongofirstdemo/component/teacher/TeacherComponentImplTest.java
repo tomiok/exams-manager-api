@@ -11,8 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.tommy.mongofirstdemo.domain.techer.Teacher;
-import org.tommy.mongofirstdemo.domain.techer.TeacherRepository;
+import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
 
 @RunWith(SpringRunner.class)
 public class TeacherComponentImplTest {
