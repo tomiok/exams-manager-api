@@ -18,19 +18,8 @@ public class TeacherEntityGateway {
   }
 
   TeacherComponent.TeacherResponse transform(final TeacherComponent.TeacherRequest request) {
-    TeacherComponent.TeacherResponse response = new TeacherComponent.TeacherResponse();
-
     Teacher teacher = save(request);
-    TeacherComponent.Comment comment = new TeacherComponent.Comment(teacher.getComment().getDescription());
-
-    response.setCity(teacher.getAddress().getCity());
-    response.setComment(comment);
-    response.setFirstName(teacher.getFirstName());
-    response.setLastName(teacher.getLastName());
-    response.setNickName(teacher.getNickName());
-    response.setTeacherId(teacher.getId());
-
-    return response;
+    return new TeacherComponent.TeacherResponse(teacher);
   }
 
   private Teacher transformToModel(final TeacherComponent.TeacherRequest request) {

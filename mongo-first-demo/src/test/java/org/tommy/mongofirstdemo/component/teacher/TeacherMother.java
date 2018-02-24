@@ -12,7 +12,7 @@ public class TeacherMother {
     request.setComment(comment);
     request.setLat(lat);
     request.setLon(lon);
-    request.setNickName("some_cool_nick");
+    request.setMail("some_cool_nick");
     request.setCity("Rosario");
 
     return request;
