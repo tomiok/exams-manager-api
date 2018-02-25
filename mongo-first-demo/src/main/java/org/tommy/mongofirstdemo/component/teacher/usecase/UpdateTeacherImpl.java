@@ -13,7 +13,7 @@ public class UpdateTeacherImpl implements Update {
 
   private final TeacherEntityGateway teacherEntityGateway;
 
-  UpdateTeacherImpl(final TeacherEntityGateway teacherEntityGateway) {
+  public UpdateTeacherImpl(final TeacherEntityGateway teacherEntityGateway) {
     this.teacherEntityGateway = teacherEntityGateway;
   }
 
@@ -36,6 +36,9 @@ public class UpdateTeacherImpl implements Update {
 
   @Override
   public void updateSignatures(final SignaturesRequest request) {
+    Validate.notNull(request.getTeacherId(), "teacherId cannot be null");
+    Validate.isTrue(!request.getSignatures().isEmpty(), "signatures cannot be empty");
+
     Teacher teacher = getTeacherById(request.getTeacherId());
     teacher.setSignatures(request.getSignatures()
         .stream()
@@ -46,6 +49,10 @@ public class UpdateTeacherImpl implements Update {
 
   @Override
   public void updateLocation(final LocationRequest request) {
+    Validate.notNull(request.getTeacherId(), "teacherId cannot be null");
+    Validate.notNull(request.getCity(), "The city cannot be empty");
+    Validate.notNull(request.getStreet(), "The street cannot be empty");
+    Validate.notNull(request.getNumber(), "The number cannot be empty");
     Teacher teacher = getTeacherById(request.getTeacherId());
     teacher.setAddress(new Address(request.getLat(), request.getLon(), request.getStreet(), request.getNumber(),
         request.getCity()));

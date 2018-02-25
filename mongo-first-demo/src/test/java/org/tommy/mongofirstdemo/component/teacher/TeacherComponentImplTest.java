@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
 import org.tommy.mongofirstdemo.domain.teacher.Teacher;
 import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
 
@@ -20,6 +21,9 @@ public class TeacherComponentImplTest {
   @MockBean
   private TeacherRepository teacherRepository;
 
+  @MockBean
+  private Update update;
+
   private TeacherEntityGateway gateway;
 
   private TeacherComponent component;
@@ -27,7 +31,7 @@ public class TeacherComponentImplTest {
   @Before
   public void setUp() {
     gateway = new TeacherEntityGateway(teacherRepository);
-    component = new TeacherComponentImpl(gateway);
+    component = new TeacherComponentImpl(gateway, update);
   }
 
   @Test

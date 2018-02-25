@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
 import org.tommy.mongofirstdemo.domain.teacher.Level;
 import org.tommy.mongofirstdemo.domain.teacher.Signature;
 import org.tommy.mongofirstdemo.domain.teacher.Teacher;
@@ -17,6 +18,12 @@ public interface TeacherComponent {
   TeacherResponse createTeacher(final TeacherRequest request);
 
   TeacherResponse findById(final String id);
+
+  void updatePersonalInfo(final Update.PersonalInfoRequest request);
+
+  void updateLocation(final Update.LocationRequest request);
+
+  void updateSignatures(final Update.SignaturesRequest request);
 
   @Getter
   @Setter
