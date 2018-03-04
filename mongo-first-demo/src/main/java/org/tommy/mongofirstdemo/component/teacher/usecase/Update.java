@@ -30,6 +30,8 @@ public interface Update {
     private String email;
 
     private String comment;
+
+    private boolean goToStudentHouse;
   }
 
   @Getter

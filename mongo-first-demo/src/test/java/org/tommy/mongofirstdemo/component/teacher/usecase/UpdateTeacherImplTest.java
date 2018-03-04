@@ -89,7 +89,7 @@ public class UpdateTeacherImplTest {
 
   private static Update.PersonalInfoRequest createPersonalInfoRequest(final String firstName, final String lastName,
                                                                       final String email, final String comment) {
-    return new Update.PersonalInfoRequest("id", firstName, lastName, email, comment);
+    return new Update.PersonalInfoRequest("id", firstName, lastName, email, comment, true);
   }
 
   private static Update.SignaturesRequest createSignaturesRequest(final Set<Signature> signatures) {

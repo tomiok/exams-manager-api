@@ -42,6 +42,14 @@ public interface TeacherComponent {
 
     private String city;
 
+    private String street;
+
+    private String number;
+
+    private Double lat;
+
+    private Double lon;
+
     private Set<SignatureDto> signature;
 
     private boolean goToStudentHouse;
@@ -52,7 +60,13 @@ public interface TeacherComponent {
       this.lastName = teacher.getLastName();
       this.mail = teacher.getMail();
       ofNullable(teacher.getComment()).ifPresent(comment -> this.comment = new Comment(comment.getDescription()));
-      ofNullable(teacher.getAddress()).ifPresent(address -> this.city = address.getCity());
+      ofNullable(teacher.getAddress()).ifPresent(address -> {
+        this.city = address.getCity();
+        this.street = address.getStreet();
+        this.number = address.getNumber();
+        this.lat = address.getLat() != 0d ? address.getLat() : null;
+        this.lon = address.getLon() != 0d ? address.getLon() : null;
+      });
       this.signature = teacher.getSignatures().stream().map(SignatureDto::fromModel).collect(toSet());
       this.goToStudentHouse = teacher.isGoToStudentHouse();
     }

@@ -30,6 +30,7 @@ public class UpdateTeacherImpl implements Update {
     teacher.setLastName(request.getLastName());
     teacher.setMail(request.getEmail());
     teacher.setComment(new Comment(request.getComment()));
+    teacher.setGoToStudentHouse(request.isGoToStudentHouse());
 
     teacherEntityGateway.saveTeacher(teacher);
   }
@@ -44,6 +45,7 @@ public class UpdateTeacherImpl implements Update {
         .stream()
         .map(dto -> new Signature(dto.getSignature(), dto.getLevel()))
         .collect(toSet()));
+
     teacherEntityGateway.saveTeacher(teacher);
   }
 

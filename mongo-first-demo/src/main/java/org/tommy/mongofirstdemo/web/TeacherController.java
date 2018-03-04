@@ -37,13 +37,25 @@ public class TeacherController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> teacherById(@PathVariable final String id) {
+  public ResponseEntity<TeacherComponent.TeacherResponse> teacherById(@PathVariable final String id) {
     return ok(teacherComponent.findById(id));
   }
 
   @PatchMapping("/personal")
   public ResponseEntity<?> updatePersonalInformation(@RequestBody final Update.PersonalInfoRequest req) {
     teacherComponent.updatePersonalInfo(req);
+    return ok().build();
+  }
+
+  @PatchMapping("/signatures")
+  public ResponseEntity<?> updateSignatures(@RequestBody final Update.SignaturesRequest req) {
+    teacherComponent.updateSignatures(req);
+    return ok().build();
+  }
+
+  @PatchMapping("/location")
+  public ResponseEntity<?> updateLocation(@RequestBody final Update.LocationRequest req) {
+    teacherComponent.updateLocation(req);
     return ok().build();
   }
 }
