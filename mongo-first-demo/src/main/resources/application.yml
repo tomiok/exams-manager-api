@@ -10,6 +10,9 @@ server:
   port: 8090
   compression:
     enabled: true
+logging:
+  level:
+   org.springframework.data.mongodb.core.MongoTemplate: DEBUG
 
 ---
 spring:

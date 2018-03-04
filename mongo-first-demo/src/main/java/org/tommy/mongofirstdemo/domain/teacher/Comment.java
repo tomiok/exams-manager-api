@@ -19,7 +19,7 @@ public class Comment {
 
   private Comment() {}
 
-  Comment(final String description) {
+  public Comment(final String description) {
     this.description = description;
   }
 }

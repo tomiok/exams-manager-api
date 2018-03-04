@@ -22,6 +22,14 @@ public class TeacherEntityGateway {
     return new TeacherComponent.TeacherResponse(teacher);
   }
 
+  public Teacher findTeacherById(final String id) {
+    return repository.findOne(id);
+  }
+
+  public void saveTeacher(final Teacher teacher) {
+    repository.save(teacher);
+  }
+
   private Teacher transformToModel(final TeacherComponent.TeacherRequest request) {
     return Teacher.from(request);
   }
