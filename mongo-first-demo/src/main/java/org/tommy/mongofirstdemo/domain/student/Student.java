@@ -1,14 +1,16 @@
-package org.tommy.mongofirstdemo.domain.user;
+package org.tommy.mongofirstdemo.domain.student;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
+@NoArgsConstructor
 @Getter
 @Setter
-class Student {
+public class Student {
 
   @Id
   private String id;
@@ -19,6 +21,14 @@ class Student {
 
   private String password;
 
+  private String email;
+
+  public Student(final String firstName, final String lastName, final String password, final String email) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.password = password;
+    this.email = email;
+  }
 
 }
 /*

@@ -1,5 +1,6 @@
 package org.tommy.mongofirstdemo.component.teacher;
 
+import java.util.Optional;
 import org.apache.commons.lang3.Validate;
 import org.tommy.mongofirstdemo.domain.teacher.Teacher;
 import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
@@ -14,7 +15,8 @@ public class TeacherEntityGateway {
   }
 
   TeacherComponent.TeacherResponse findById(final String id) {
-    return new TeacherComponent.TeacherResponse(repository.findOne(id));
+
+    return new TeacherComponent.TeacherResponse(findTeacherById(id));
   }
 
   TeacherComponent.TeacherResponse transform(final TeacherComponent.TeacherRequest request) {
@@ -23,7 +25,8 @@ public class TeacherEntityGateway {
   }
 
   public Teacher findTeacherById(final String id) {
-    return repository.findOne(id);
+    Optional<Teacher> teacherOptional = repository.findById(id);
+    return teacherOptional.orElseThrow(() -> new IllegalArgumentException("Teacher not found with id " + id));
   }
 
   public void saveTeacher(final Teacher teacher) {

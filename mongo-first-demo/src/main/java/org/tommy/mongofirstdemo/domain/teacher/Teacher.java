@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toSet;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -14,6 +15,7 @@ import org.tommy.mongofirstdemo.domain.Address;
 
 @Document(collection = "teacher")
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Teacher {
@@ -37,8 +39,6 @@ public class Teacher {
   private Set<Signature> signatures;
 
   private boolean goToStudentHouse;
-
-  private Teacher() {}
 
   private Teacher(final String firstName, final String lastName, final String mail, final String password,
                   final Address address, final Comment comment, final Set<Signature> signatures,
