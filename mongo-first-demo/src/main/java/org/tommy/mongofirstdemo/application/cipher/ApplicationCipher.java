@@ -23,7 +23,7 @@ public class ApplicationCipher {
       cipher.init(Cipher.ENCRYPT_MODE, key);
       decryptCipher.init(Cipher.DECRYPT_MODE, key);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-      e.printStackTrace();
+     throw new RuntimeException("cannot initialize the Ciphers", e);
     }
   }
 
@@ -35,7 +35,7 @@ public class ApplicationCipher {
 
       return Base64.getEncoder().encodeToString(encrypted);
     } catch (UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-      throw new IllegalStateException("Cannot encrypt the String");
+      throw new IllegalStateException("Cannot encrypt the String", e);
     }
   }
 
@@ -45,7 +45,7 @@ public class ApplicationCipher {
       byte[] strBytes = decryptCipher.doFinal(decoded);
       return new String(strBytes, "UTF8");
     } catch (UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-      throw new IllegalStateException("Cannot decrypt the string");
+      throw new IllegalStateException("Cannot decrypt the string", e);
     }
   }
 }

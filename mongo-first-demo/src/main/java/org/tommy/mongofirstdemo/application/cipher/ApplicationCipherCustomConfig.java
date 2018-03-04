@@ -17,7 +17,7 @@ public class ApplicationCipherCustomConfig {
       SecretKey secretKey = keyGen.generateKey();
       return new ApplicationCipher(secretKey);
     } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException();
+      throw new RuntimeException("Cannot initialize the keyGenerator", e);
     }
   }
 }
