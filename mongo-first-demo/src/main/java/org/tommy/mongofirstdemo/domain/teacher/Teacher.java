@@ -55,7 +55,7 @@ public class Teacher {
 
   public static Teacher from(TeacherComponent.TeacherRequest request) {
     return new Teacher(request.getFirstName(), request.getLastName(),
-        request.getMail(), request.getPassword(),
+        request.getEmail(), request.getPassword(),
         Address.from(request.getLat(), request.getLon(), request.getStreet(), request.getCity(), request.getNumber()),
         new Comment(request.getComment().getComment()),
         request

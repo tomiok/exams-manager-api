@@ -22,7 +22,7 @@ public class TeacherMother {
     request.setComment(comment);
     request.setLat(lat);
     request.setLon(lon);
-    request.setMail("some_cool_nick@msn.com");
+    request.setEmail("some_cool_nick@msn.com");
     request.setCity("Rosario");
     request.setGoToStudentHouse(true);
     request.setSignatures(createSignatureDto("Math", "English"));
