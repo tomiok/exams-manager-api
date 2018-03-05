@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
-import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
+import org.tommy.mongofirstdemo.component.teacher.usecase.update.Update;
 import org.tommy.mongofirstdemo.domain.teacher.Teacher;
 import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
 
