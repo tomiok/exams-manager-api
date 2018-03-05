@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tommy.mongofirstdemo.domain.student.Student;
 
 public interface StudentComponent {
 
   String registerStudent(final CreateStudentRequest request);
+
+  StudentResponse getStudentById(final String id);
 
   @AllArgsConstructor
   @NoArgsConstructor
@@ -22,6 +25,23 @@ public interface StudentComponent {
     private String firstName;
 
     private String lastName;
+  }
+
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  @Setter
+  class StudentResponse {
+
+    private String email;
+
+    private String firstName;
+
+    private String lastName;
+
+    static StudentResponse fromModel(final Student student) {
+      return new StudentResponse(student.getEmail(), student.getFirstName(), student.getLastName());
+    }
   }
 }
 
