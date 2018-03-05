@@ -3,6 +3,7 @@ package org.tommy.mongofirstdemo.component.teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
 import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
 import org.tommy.mongofirstdemo.component.teacher.usecase.UpdateTeacherImpl;
 import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
@@ -13,9 +14,12 @@ public class TeacherConfig {
   @Autowired
   private TeacherRepository teacherRepository;
 
+  @Autowired
+  private ApplicationCipher applicationCipher;
+
   @Bean
   public TeacherEntityGateway teacherEntityGateway() {
-    return new TeacherEntityGateway(teacherRepository);
+    return new TeacherEntityGateway(teacherRepository, applicationCipher);
   }
 
   @Bean
