@@ -2,7 +2,7 @@ package org.tommy.mongofirstdemo.component.teacher.usecase.find;
 
 import java.util.Set;
 import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
-import org.tommy.mongofirstdemo.domain.teacher.Level;
+import org.tommy.mongofirstdemo.component.teacher.domain.Level;
 
 public interface FindTeacher {
 

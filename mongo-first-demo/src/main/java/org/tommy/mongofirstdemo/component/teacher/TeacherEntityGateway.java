@@ -2,8 +2,8 @@ package org.tommy.mongofirstdemo.component.teacher;
 
 import org.apache.commons.lang3.Validate;
 import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
-import org.tommy.mongofirstdemo.domain.teacher.Teacher;
-import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
+import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
+import org.tommy.mongofirstdemo.component.teacher.domain.TeacherRepository;
 
 public class TeacherEntityGateway {
 

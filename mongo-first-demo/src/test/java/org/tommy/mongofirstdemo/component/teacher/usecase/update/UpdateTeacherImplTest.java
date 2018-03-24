@@ -15,11 +15,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
 import org.tommy.mongofirstdemo.component.teacher.TeacherEntityGateway;
 import org.tommy.mongofirstdemo.component.teacher.TeacherMother;
-import org.tommy.mongofirstdemo.domain.Address;
-import org.tommy.mongofirstdemo.domain.teacher.Comment;
-import org.tommy.mongofirstdemo.domain.teacher.Level;
-import org.tommy.mongofirstdemo.domain.teacher.Signature;
-import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.component.shared.Address;
+import org.tommy.mongofirstdemo.component.teacher.domain.Comment;
+import org.tommy.mongofirstdemo.component.teacher.domain.Level;
+import org.tommy.mongofirstdemo.component.teacher.domain.Signature;
+import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
 
 @RunWith(SpringRunner.class)
 public class UpdateTeacherImplTest {

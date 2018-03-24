@@ -1,6 +1,5 @@
-package org.tommy.mongofirstdemo.domain;
+package org.tommy.mongofirstdemo.component.shared;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;

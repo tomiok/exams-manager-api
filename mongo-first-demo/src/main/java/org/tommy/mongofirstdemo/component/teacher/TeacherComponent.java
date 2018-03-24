@@ -9,9 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.tommy.mongofirstdemo.component.teacher.usecase.update.Update;
-import org.tommy.mongofirstdemo.domain.teacher.Level;
-import org.tommy.mongofirstdemo.domain.teacher.Signature;
-import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.component.teacher.domain.Level;
+import org.tommy.mongofirstdemo.component.teacher.domain.Signature;
+import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
 
 public interface TeacherComponent {
 
