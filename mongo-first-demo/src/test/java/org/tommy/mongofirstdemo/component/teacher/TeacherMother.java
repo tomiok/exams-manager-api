@@ -45,4 +45,13 @@ public class TeacherMother {
   public static Set<TeacherComponent.SignatureDto> createSignatureDto(final String... signatures) {
     return Stream.of(signatures).map(s -> new TeacherComponent.SignatureDto(s, Level.ALL_LEVELS)).collect(toSet());
   }
+
+  public static Teacher createAlbertEinstein() {
+    return createTeacher("Albert", "Einstein", new Address(1d, 2d, "Evergreen", "222",
+        "Springfield"), getSignatures("Math", "Physiscs"), new Comment("E = M. C . C"));
+  }
+
+  public static Set<Signature> getSignatures(final String... signatures) {
+    return Stream.of(signatures).map(s -> new Signature(s, Level.ALL_LEVELS)).collect(toSet());
+  }
 }

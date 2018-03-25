@@ -1,6 +1,6 @@
 package org.tommy.mongofirstdemo.component.classroom.domain;
 
-enum ClassStatus {
+public enum ClassStatus {
 
   PENDING, ACCEPTED, DISCARDED
 }

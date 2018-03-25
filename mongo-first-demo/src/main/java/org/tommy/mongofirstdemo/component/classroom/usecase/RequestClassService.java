@@ -2,10 +2,11 @@ package org.tommy.mongofirstdemo.component.classroom.usecase;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.tommy.mongofirstdemo.component.classroom.domain.ClassRequest;
 
 public interface RequestClassService {
 
-  void requestClass(final Request request);
+  ClassRequest requestClass(final Request request);
 
   @Getter
   @Setter
@@ -18,5 +19,4 @@ public interface RequestClassService {
     private String comment;
 
   }
-
 }

@@ -4,6 +4,7 @@ import java.time.Instant;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.tommy.mongofirstdemo.component.student.domain.Student;
 import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
@@ -25,6 +26,9 @@ public class ClassRequest {
   private ClassStatus status;
 
   private Instant dateCreated;
+
+  @Version
+  private Long version;
 
   public ClassRequest(final Student student, final Teacher teacher, final String comment,
                       final ClassStatus status, final Instant dateCreated) {
