@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.web;
+package org.tommy.mongofirstdemo.component.teacher.web;
 
 import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
-import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
+import org.tommy.mongofirstdemo.component.teacher.usecase.update.Update;
+import org.tommy.mongofirstdemo.shared.WebUtils;
 
 @RestController
 @RequestMapping("/teachers")

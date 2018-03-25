@@ -1,10 +1,9 @@
-package org.tommy.mongofirstdemo.web;
+package org.tommy.mongofirstdemo.component.student.web;
 
 import static org.springframework.http.ResponseEntity.ok;
 
 import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tommy.mongofirstdemo.component.student.StudentComponent;
+import org.tommy.mongofirstdemo.shared.WebUtils;
 
 @RestController
 @RequestMapping(path = "/students")

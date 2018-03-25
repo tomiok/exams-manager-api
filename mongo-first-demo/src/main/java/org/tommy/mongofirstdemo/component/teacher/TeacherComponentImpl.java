@@ -1,7 +1,7 @@
 package org.tommy.mongofirstdemo.component.teacher;
 
 import org.apache.commons.lang3.Validate;
-import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
+import org.tommy.mongofirstdemo.component.teacher.usecase.update.Update;
 
 public class TeacherComponentImpl implements TeacherComponent {
 

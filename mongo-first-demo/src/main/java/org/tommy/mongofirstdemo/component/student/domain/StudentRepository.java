@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.domain.student;
+package org.tommy.mongofirstdemo.component.student.domain;
 
 import org.springframework.data.repository.CrudRepository;
 

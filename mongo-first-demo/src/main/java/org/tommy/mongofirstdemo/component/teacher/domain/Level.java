@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.domain.teacher;
+package org.tommy.mongofirstdemo.component.teacher.domain;
 
 public enum Level {
 

@@ -1,13 +1,13 @@
-package org.tommy.mongofirstdemo.component.teacher.usecase;
+package org.tommy.mongofirstdemo.component.teacher.usecase.update;
 
 import static java.util.stream.Collectors.toSet;
 
 import org.apache.commons.lang3.Validate;
 import org.tommy.mongofirstdemo.component.teacher.TeacherEntityGateway;
-import org.tommy.mongofirstdemo.domain.Address;
-import org.tommy.mongofirstdemo.domain.teacher.Comment;
-import org.tommy.mongofirstdemo.domain.teacher.Signature;
-import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.component.shared.Address;
+import org.tommy.mongofirstdemo.component.teacher.domain.Comment;
+import org.tommy.mongofirstdemo.component.teacher.domain.Signature;
+import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
 
 public class UpdateTeacherImpl implements Update {
 
