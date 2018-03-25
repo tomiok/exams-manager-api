@@ -1,25 +1,25 @@
-package org.tommy.mongofirstdemo.component.teacher.usecase;
+package org.tommy.mongofirstdemo.component.teacher.usecase.update;
 
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.tommy.mongofirstdemo.component.teacher.TeacherMother.getSignatures;
 
 import java.util.Set;
-import java.util.stream.Stream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.tommy.mongofirstdemo.component.shared.Address;
 import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
 import org.tommy.mongofirstdemo.component.teacher.TeacherEntityGateway;
 import org.tommy.mongofirstdemo.component.teacher.TeacherMother;
-import org.tommy.mongofirstdemo.domain.Address;
-import org.tommy.mongofirstdemo.domain.teacher.Comment;
-import org.tommy.mongofirstdemo.domain.teacher.Level;
-import org.tommy.mongofirstdemo.domain.teacher.Signature;
-import org.tommy.mongofirstdemo.domain.teacher.Teacher;
+import org.tommy.mongofirstdemo.component.teacher.domain.Comment;
+import org.tommy.mongofirstdemo.component.teacher.domain.Level;
+import org.tommy.mongofirstdemo.component.teacher.domain.Signature;
+import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
 
 @RunWith(SpringRunner.class)
 public class UpdateTeacherImplTest {
@@ -81,10 +81,6 @@ public class UpdateTeacherImplTest {
     return getTeacher("Robert", "Rock",
         new Address(1d, 2d, "Evergreen", "123", "Springfield"), getSignatures("Math", "English"),
         new Comment("Robert rock the best teacher"));
-  }
-
-  private static Set<Signature> getSignatures(final String... signatures) {
-    return Stream.of(signatures).map(s -> new Signature(s, Level.ALL_LEVELS)).collect(toSet());
   }
 
   private static Update.PersonalInfoRequest createPersonalInfoRequest(final String firstName, final String lastName,

@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.component.teacher.usecase;
+package org.tommy.mongofirstdemo.component.teacher.usecase.update;
 
 import java.util.Set;
 import lombok.AllArgsConstructor;
