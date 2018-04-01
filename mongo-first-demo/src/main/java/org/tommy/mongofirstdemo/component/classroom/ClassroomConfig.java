@@ -1,9 +1,12 @@
 package org.tommy.mongofirstdemo.component.classroom;
 
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassRepository;
+import org.tommy.mongofirstdemo.component.classroom.usecase.FindClassService;
+import org.tommy.mongofirstdemo.component.classroom.usecase.FindClassServiceImpl;
 import org.tommy.mongofirstdemo.component.classroom.usecase.RequestClassService;
 import org.tommy.mongofirstdemo.component.classroom.usecase.RequestClassServiceImpl;
 import org.tommy.mongofirstdemo.component.student.domain.StudentRepository;
@@ -24,5 +27,10 @@ public class ClassroomConfig {
   @Bean
   public RequestClassService requestClassService() {
     return new RequestClassServiceImpl(studentRepository, teacherRepository, classRepository);
+  }
+
+  @Bean
+  public FindClassService findClassService() {
+    return new FindClassServiceImpl(classRepository);
   }
 }
