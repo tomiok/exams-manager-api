@@ -2,37 +2,36 @@ package org.tommy.mongofirstdemo.component.classroom.usecase;
 
 import java.time.Instant;
 import org.apache.commons.lang3.Validate;
-import org.tommy.mongofirstdemo.component.classroom.domain.ClassRepository;
+import org.tommy.mongofirstdemo.component.classroom.ClassroomEntityGateway;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassRequest;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassStatus;
-import org.tommy.mongofirstdemo.component.shared.EntityNotFoundException;
+import org.tommy.mongofirstdemo.component.student.StudentEntityGateway;
 import org.tommy.mongofirstdemo.component.student.domain.Student;
-import org.tommy.mongofirstdemo.component.student.domain.StudentRepository;
+import org.tommy.mongofirstdemo.component.teacher.TeacherEntityGateway;
 import org.tommy.mongofirstdemo.component.teacher.domain.Teacher;
-import org.tommy.mongofirstdemo.component.teacher.domain.TeacherRepository;
 
 public class RequestClassServiceImpl implements RequestClassService {
 
-  private final StudentRepository studentRepository;
+  private final StudentEntityGateway studentEntityGateway;
 
-  private final TeacherRepository teacherRepository;
+  private final TeacherEntityGateway teacherEntityGateway;
 
-  private final ClassRepository classRepository;
+  private final ClassroomEntityGateway classroomEntityGateway;
 
-  public RequestClassServiceImpl(final StudentRepository studentRepository,
-                                 final TeacherRepository teacherRepository,
-                                 final ClassRepository classRepository) {
-    this.studentRepository = studentRepository;
-    this.teacherRepository = teacherRepository;
-    this.classRepository = classRepository;
+  public RequestClassServiceImpl(final StudentEntityGateway studentEntityGateway,
+                                 final TeacherEntityGateway teacherEntityGateway,
+                                 final ClassroomEntityGateway classroomEntityGateway) {
+    this.studentEntityGateway = studentEntityGateway;
+    this.teacherEntityGateway = teacherEntityGateway;
+    this.classroomEntityGateway = classroomEntityGateway;
   }
 
   @Override
   public ClassRequest requestClass(final Request request) {
-    Student s = studentRepository.findById(request.getStudentId()).orElseThrow(EntityNotFoundException::new);
-    Teacher t = teacherRepository.findById(request.getTeacherId()).orElseThrow(EntityNotFoundException::new);
+    Student s = studentEntityGateway.findById(request.getStudentId());
+    Teacher t = teacherEntityGateway.findTeacherById(request.getTeacherId());
     validateComment(request.getComment());
-    return classRepository
+    return classroomEntityGateway
         .save(new ClassRequest(s, t, request.getComment(), ClassStatus.PENDING, Instant.now()));
   }
 

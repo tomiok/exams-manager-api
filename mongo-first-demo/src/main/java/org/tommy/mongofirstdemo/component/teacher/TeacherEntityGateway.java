@@ -11,7 +11,7 @@ public class TeacherEntityGateway {
 
   private final ApplicationCipher applicationCipher;
 
-  TeacherEntityGateway(final TeacherRepository repository,
+  public TeacherEntityGateway(final TeacherRepository repository,
                        final ApplicationCipher applicationCipher) {
     Validate.notNull(repository, "repository bean cannot be null");
     Validate.notNull(applicationCipher, "applicationCipher cannot be null");

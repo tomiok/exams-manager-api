@@ -4,6 +4,7 @@ import static org.tommy.mongofirstdemo.component.student.StudentComponent.Studen
 
 import java.util.Optional;
 import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
+import org.tommy.mongofirstdemo.component.shared.EntityNotFoundException;
 import org.tommy.mongofirstdemo.component.student.domain.Student;
 import org.tommy.mongofirstdemo.component.student.domain.StudentRepository;
 
@@ -29,5 +30,9 @@ public class StudentEntityGateway {
   StudentComponent.StudentResponse findStudentById(final String id) {
     Student student = studentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     return fromModel(student);
+  }
+
+  public Student findById(final String id) {
+    return studentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
   }
 }
