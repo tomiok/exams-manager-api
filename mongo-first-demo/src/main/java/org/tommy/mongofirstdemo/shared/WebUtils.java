@@ -1,11 +1,11 @@
-package org.tommy.mongofirstdemo.web;
+package org.tommy.mongofirstdemo.shared;
 
 import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
 
-final class WebUtils {
+public final class WebUtils {
 
-  static URI getCreatedEntityUri(final String entityId, final HttpServletRequest req) throws Exception {
+  public static URI getCreatedEntityUri(final String entityId, final HttpServletRequest req) throws Exception {
     String selfUrl = extractSelfUrl(req);
     return new URI(selfUrl + "/" + entityId);
   }

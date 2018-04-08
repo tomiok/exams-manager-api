@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
-import org.tommy.mongofirstdemo.component.teacher.usecase.Update;
-import org.tommy.mongofirstdemo.component.teacher.usecase.UpdateTeacherImpl;
-import org.tommy.mongofirstdemo.domain.teacher.TeacherRepository;
+import org.tommy.mongofirstdemo.component.teacher.usecase.update.Update;
+import org.tommy.mongofirstdemo.component.teacher.usecase.update.UpdateTeacherImpl;
+import org.tommy.mongofirstdemo.component.teacher.domain.TeacherRepository;
 
 @Configuration
 public class TeacherConfig {

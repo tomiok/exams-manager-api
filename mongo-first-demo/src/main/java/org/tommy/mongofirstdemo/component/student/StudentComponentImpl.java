@@ -1,7 +1,7 @@
 package org.tommy.mongofirstdemo.component.student;
 
 import org.apache.commons.lang3.Validate;
-import org.tommy.mongofirstdemo.domain.student.Student;
+import org.tommy.mongofirstdemo.component.student.domain.Student;
 
 public class StudentComponentImpl implements StudentComponent {
 

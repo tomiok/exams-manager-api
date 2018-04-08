@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.domain.student;
+package org.tommy.mongofirstdemo.component.student.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

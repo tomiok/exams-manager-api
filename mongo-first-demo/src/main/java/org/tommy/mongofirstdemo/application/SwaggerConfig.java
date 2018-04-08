@@ -18,7 +18,7 @@ public class SwaggerConfig {
         .groupName("My Teacher product APIs")
         .select()
         .apis(RequestHandlerSelectors
-            .basePackage("org.tommy.mongofirstdemo.web"))
+            .basePackage("org.tommy.mongofirstdemo"))
         .build()
         .apiInfo(new ApiInfo("My-teacher project", "A fancy product to find out your personal teacher.",
             "1.0-SNAPSHOT", "SID",

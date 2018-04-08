@@ -4,8 +4,8 @@ import static org.tommy.mongofirstdemo.component.student.StudentComponent.Studen
 
 import java.util.Optional;
 import org.tommy.mongofirstdemo.application.cipher.ApplicationCipher;
-import org.tommy.mongofirstdemo.domain.student.Student;
-import org.tommy.mongofirstdemo.domain.student.StudentRepository;
+import org.tommy.mongofirstdemo.component.student.domain.Student;
+import org.tommy.mongofirstdemo.component.student.domain.StudentRepository;
 
 public class StudentEntityGateway {
 

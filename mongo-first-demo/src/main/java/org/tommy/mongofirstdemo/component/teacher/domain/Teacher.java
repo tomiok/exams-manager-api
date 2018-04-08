@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.domain.teacher;
+package org.tommy.mongofirstdemo.component.teacher.domain;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
-import org.tommy.mongofirstdemo.domain.Address;
+import org.tommy.mongofirstdemo.component.shared.Address;
 
 @Document(collection = "teacher")
 @AllArgsConstructor
