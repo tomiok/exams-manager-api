@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassRepository;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassRequest;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassStatus;
-import org.tommy.mongofirstdemo.component.studend.StudentMother;
+import org.tommy.mongofirstdemo.component.student.StudentMother;
 import org.tommy.mongofirstdemo.component.student.domain.Student;
 import org.tommy.mongofirstdemo.component.student.domain.StudentRepository;
 import org.tommy.mongofirstdemo.component.teacher.TeacherMother;

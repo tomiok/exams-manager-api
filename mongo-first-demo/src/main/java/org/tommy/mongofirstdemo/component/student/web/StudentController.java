@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tommy.mongofirstdemo.component.shared.UserType;
 import org.tommy.mongofirstdemo.component.student.StudentComponent;
+import org.tommy.mongofirstdemo.component.token.TokenFactory;
 import org.tommy.mongofirstdemo.shared.WebUtils;
 
 @RestController
@@ -20,8 +22,12 @@ public class StudentController {
 
   private final StudentComponent studentComponent;
 
-  public StudentController(final StudentComponent studentComponent) {
+  private final TokenFactory tokenFactory;
+
+  public StudentController(final StudentComponent studentComponent,
+                           final TokenFactory tokenFactory) {
     this.studentComponent = studentComponent;
+    this.tokenFactory = tokenFactory;
   }
 
   @PostMapping
@@ -30,7 +36,7 @@ public class StudentController {
       throws Exception {
     String id = studentComponent.registerStudent(studentRequest);
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
-    return ResponseEntity.created(uri).build();
+    return ResponseEntity.created(uri).header("token", tokenFactory.create(id, UserType.STUDENT)).build();
   }
 
   @GetMapping("/{id}")
