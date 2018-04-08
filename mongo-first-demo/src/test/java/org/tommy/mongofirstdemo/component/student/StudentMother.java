@@ -1,4 +1,4 @@
-package org.tommy.mongofirstdemo.component.studend;
+package org.tommy.mongofirstdemo.component.student;
 
 import org.tommy.mongofirstdemo.component.student.domain.Student;
 
