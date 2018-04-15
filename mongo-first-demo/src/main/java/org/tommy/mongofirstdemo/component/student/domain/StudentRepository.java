@@ -1,6 +1,6 @@
 package org.tommy.mongofirstdemo.component.student.domain;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface StudentRepository extends CrudRepository<Student, String> {
+public interface StudentRepository extends MongoRepository<Student, String> {
 }

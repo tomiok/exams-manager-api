@@ -21,7 +21,6 @@ public class StudentEntityGateway {
   }
 
   Student saveStudent(final Student student) {
-    studentRepository.deleteAll(); //TODO remove this sometime in the future
     Optional<String> pass = Optional.ofNullable(student.getPassword());
     pass.ifPresent(s -> student.setPassword(applicationCipher.encrypt(s)));
     return studentRepository.save(student);

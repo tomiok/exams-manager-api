@@ -8,10 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
 import org.tommy.mongofirstdemo.component.shared.Address;
+import org.tommy.mongofirstdemo.component.teacher.TeacherComponent;
 
 @Document(collection = "teacher")
 @AllArgsConstructor
@@ -27,7 +26,6 @@ public class Teacher {
 
   private String lastName;
 
-  @Indexed(unique = true)
   private String mail;
 
   private String password;

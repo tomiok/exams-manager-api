@@ -33,7 +33,7 @@ public class ClassroomConfig {
 
   @Bean
   public FindClassService findClassService() {
-    return new FindClassServiceImpl(classRepository);
+    return new FindClassServiceImpl(classroomEntityGateway);
   }
 
   @Bean
