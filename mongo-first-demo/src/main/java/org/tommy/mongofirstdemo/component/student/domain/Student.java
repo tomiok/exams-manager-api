@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "user")
+@Document(collection = "student")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -22,7 +21,6 @@ public class Student {
 
   private String password;
 
-  @Indexed(unique = true)
   private String email;
 
   public Student(final String firstName, final String lastName, final String password, final String email) {

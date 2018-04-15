@@ -11,8 +11,8 @@ public class TeacherEntityGateway {
 
   private final ApplicationCipher applicationCipher;
 
-  TeacherEntityGateway(final TeacherRepository repository,
-                       final ApplicationCipher applicationCipher) {
+  public TeacherEntityGateway(final TeacherRepository repository,
+                              final ApplicationCipher applicationCipher) {
     Validate.notNull(repository, "repository bean cannot be null");
     Validate.notNull(applicationCipher, "applicationCipher cannot be null");
     this.repository = repository;
@@ -45,7 +45,6 @@ public class TeacherEntityGateway {
   }
 
   private Teacher save(final TeacherComponent.TeacherRequest request) {
-    repository.deleteAll(); //TODO remove this some time in the future
     return repository.save(transformToModel(request));
   }
 

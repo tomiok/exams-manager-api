@@ -1,12 +1,19 @@
 package org.tommy.mongofirstdemo.component.classroom.domain;
 
 import java.util.Set;
-import org.springframework.data.repository.CrudRepository;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
-public interface ClassRepository extends CrudRepository<ClassRequest, String> {
+public interface ClassRepository extends MongoRepository<ClassRequest, String> {
 
-  Set<ClassRequest> findByStudentId(final String studentId);
+  @Query("{'student.id': ?0}")
+  Set<ClassRequest> findByStudentId(final ObjectId studentId);
 
-  Set<ClassRequest> findByTeacherId(final String teacherId);
+  @Query("{'teacher.id': ?0}")
+  Set<ClassRequest> findByTeacherId(final ObjectId teacherId);
+
+  @Query("{ $and: [{'student.id': ?0}, {'teacher.id': ?1}, {'status': 'PENDING'}] }")
+  ClassRequest findByStudentIdAndTeacherId(final ObjectId sId, final ObjectId tId);
 }
 

@@ -13,4 +13,10 @@ public final class WebUtils {
   private static String extractSelfUrl(final HttpServletRequest req) {
     return req.getRequestURL().toString();
   }
+
+  public static String getAuthorizationToken(final HttpServletRequest request) {
+    String bearerToken = request.getHeader("Authorization");
+    String token = bearerToken.substring("Bearer ".length(), bearerToken.length());
+    return token.trim();
+  }
 }
