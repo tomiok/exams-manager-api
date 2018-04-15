@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.tommy.mongofirstdemo.component.classroom.ClassMother.create;
 
 import java.time.Instant;
 import org.junit.Before;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.tommy.mongofirstdemo.component.classroom.ClassMother;
 import org.tommy.mongofirstdemo.component.classroom.ClassroomEntityGateway;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassRequest;
 import org.tommy.mongofirstdemo.component.classroom.domain.ClassStatus;
@@ -67,7 +69,5 @@ public class RequestClassServiceImplTest {
     return r;
   }
 
-  private ClassRequest create(final Student student, final Teacher teacher, final String comment) {
-    return new ClassRequest(student, teacher, comment, ClassStatus.PENDING, Instant.now());
-  }
+
 }
