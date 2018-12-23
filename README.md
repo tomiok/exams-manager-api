@@ -9,6 +9,7 @@ University and many others establishment that you are studying on.
 
 Using the maven wrapper
 `./mvnw clean install`
+
 `./mvnw spring-boot:run`
 
 ## Docker
