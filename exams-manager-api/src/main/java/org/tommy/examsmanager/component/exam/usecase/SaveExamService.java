@@ -18,5 +18,22 @@ public interface SaveExamService {
     private String comments;
     private Boolean enrolled;
     private LocalDate date;
+
+    public SaveExamRequest(final String studentId, final String signature, final String comments,
+                           final Boolean enrolled, final LocalDate date) {
+      this.studentId = studentId;
+      this.signature = signature;
+      this.comments = comments;
+      this.enrolled = enrolled;
+      this.date = date;
+    }
+
+    public SaveExamRequest(final String studentId, final String signature, final Boolean enrolled,
+                           final LocalDate date) {
+      this.studentId = studentId;
+      this.signature = signature;
+      this.enrolled = enrolled;
+      this.date = date;
+    }
   }
 }

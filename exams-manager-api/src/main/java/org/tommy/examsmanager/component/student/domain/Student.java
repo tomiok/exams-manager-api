@@ -35,6 +35,10 @@ public class Student {
     this.email = email;
   }
 
+  public void addExam(final Exam exam) {
+    this.exams.add(exam);
+  }
+
 }
 /*
 import com.mongodb.client.model.Filters;

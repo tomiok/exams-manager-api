@@ -36,7 +36,7 @@ public class TokenTest {
     String studentId = "student-id";
     String email = "tomi@msn.com";
     String token = createTokenWith(studentId, email);
-    String id = tokenExtractor.getUserId(token);
+    String id = tokenExtractor.getStudentId(token);
 
     assertThat(id).isEqualTo(studentId);
   }
