@@ -17,7 +17,7 @@ logging:
 spring:
   data:
     mongodb:
-      database: exams-manager-local
+      database: examsManagerLocal
   profiles:
     active: local
 ---

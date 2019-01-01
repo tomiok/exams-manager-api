@@ -1,6 +1,5 @@
 package org.tommy.examsmanager.component.exam.web;
 
-import java.time.LocalDate;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +15,10 @@ final class CreateExamHttpReq {
   @Nullable
   private String comments;
 
+  /**
+   * with format YYYY-MM-DD
+   */
   private String date;
 
-  private LocalDate localDate;
+  private boolean enrolled;
 }
