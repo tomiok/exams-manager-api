@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tommy.examsmanager.component.student.StudentComponent;
+import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 import org.tommy.examsmanager.component.token.TokenFactory;
 import org.tommy.examsmanager.shared.WebUtils;
 
@@ -19,18 +19,18 @@ import org.tommy.examsmanager.shared.WebUtils;
 @RequestMapping(path = "/students")
 public class StudentController {
 
-  private final StudentComponent studentComponent;
+  private final FindStudentService studentComponent;
 
   private final TokenFactory tokenFactory;
 
-  public StudentController(final StudentComponent studentComponent,
+  public StudentController(final FindStudentService studentComponent,
                            final TokenFactory tokenFactory) {
     this.studentComponent = studentComponent;
     this.tokenFactory = tokenFactory;
   }
 
   @PostMapping
-  public ResponseEntity<?> createStudent(@RequestBody final StudentComponent.CreateStudentRequest studentRequest,
+  public ResponseEntity<?> createStudent(@RequestBody final FindStudentService.CreateStudentRequest studentRequest,
                                          final HttpServletRequest httpReq) {
     String id = studentComponent.registerStudent(studentRequest);
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
@@ -38,7 +38,7 @@ public class StudentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<StudentComponent.StudentResponse> findById(@PathVariable("id") final String id) {
+  public ResponseEntity<FindStudentService.StudentResponse> findById(@PathVariable("id") final String id) {
     return ok(studentComponent.getStudentById(id));
   }
 }
