@@ -9,15 +9,20 @@ server:
   port: 8090
   compression:
     enabled: true
-  servlet:
-    context-path: /mi-profe
 logging:
   level:
-   org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.data.*: DEBUG
 
 ---
 spring:
-  profiles: default
   data:
     mongodb:
-      database: profelocal
+      database: exams-manager-local
+  profiles:
+    active: local
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      database: exams-manager-dev

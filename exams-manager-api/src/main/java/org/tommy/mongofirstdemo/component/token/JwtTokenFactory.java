@@ -1,9 +1,12 @@
 package org.tommy.mongofirstdemo.component.token;
 
+import static java.util.Date.from;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-import org.joda.time.DateTime;
 import org.tommy.mongofirstdemo.component.shared.UserType;
 
 public class JwtTokenFactory implements TokenFactory {
@@ -33,6 +36,6 @@ public class JwtTokenFactory implements TokenFactory {
   }
 
   private static Date getDateAfter(final int days) {
-    return new DateTime().plusDays(days).toDate();
+    return from(LocalDate.now().plusDays(days).atStartOfDay(ZoneId.systemDefault()).toInstant());
   }
 }
