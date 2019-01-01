@@ -7,7 +7,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import org.tommy.examsmanager.component.shared.UserType;
 
 public class JwtTokenFactory implements TokenFactory {
 
@@ -21,15 +20,14 @@ public class JwtTokenFactory implements TokenFactory {
   }
 
   @Override
-  public String create(final String id, final UserType userType) {
-    return createJwt(id, userType);
+  public String create(final String id) {
+    return createJwt(id);
   }
 
-  private String createJwt(final String id, final UserType userType) {
+  private String createJwt(final String id) {
     return Jwts
         .builder()
         .setSubject(id)
-        .claim("userType", userType)
         .setExpiration(getDateAfter(days))
         .signWith(SignatureAlgorithm.HS512, secretKey)
         .compact();

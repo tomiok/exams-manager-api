@@ -1,10 +1,13 @@
 package org.tommy.examsmanager.component.student.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.tommy.examsmanager.component.exam.domain.Exam;
 
 @Document(collection = "student")
 @NoArgsConstructor
@@ -22,6 +25,8 @@ public class Student {
   private String password;
 
   private String email;
+
+  private List<Exam> exams = new ArrayList<>();
 
   public Student(final String firstName, final String lastName, final String password, final String email) {
     this.firstName = firstName;

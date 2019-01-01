@@ -16,7 +16,8 @@ public class JwtExtractor implements TokenExtractor {
         .parser()
         .setSigningKey(secretKey)
         .parseClaimsJws(token)
-        .getBody().get(claim, String.class);
+        .getBody()
+        .get(claim, String.class);
   }
 
   @Override

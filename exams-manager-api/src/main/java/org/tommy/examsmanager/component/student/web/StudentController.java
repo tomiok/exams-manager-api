@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tommy.examsmanager.component.shared.UserType;
 import org.tommy.examsmanager.component.student.StudentComponent;
 import org.tommy.examsmanager.component.token.TokenFactory;
 import org.tommy.examsmanager.shared.WebUtils;
@@ -35,7 +34,7 @@ public class StudentController {
                                          final HttpServletRequest httpReq) {
     String id = studentComponent.registerStudent(studentRequest);
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
-    return ResponseEntity.created(uri).header("token", tokenFactory.create(id, UserType.STUDENT)).build();
+    return ResponseEntity.created(uri).header("token", tokenFactory.create(id)).build();
   }
 
   @GetMapping("/{id}")
