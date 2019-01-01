@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tommy.examsmanager.component.student.usecase.FindStudentService;
+import org.tommy.examsmanager.component.student.usecase.SaveStudentService;
 import org.tommy.examsmanager.component.token.TokenFactory;
 import org.tommy.examsmanager.shared.WebUtils;
 
@@ -19,26 +20,31 @@ import org.tommy.examsmanager.shared.WebUtils;
 @RequestMapping(path = "/students")
 public class StudentController {
 
-  private final FindStudentService studentComponent;
+  private final SaveStudentService saveStudentService;
+
+  private final FindStudentService findStudentService;
 
   private final TokenFactory tokenFactory;
 
-  public StudentController(final FindStudentService studentComponent,
-                           final TokenFactory tokenFactory) {
-    this.studentComponent = studentComponent;
+  public StudentController(final SaveStudentService saveStudentService,
+                           final TokenFactory tokenFactory,
+                           final FindStudentService findStudentService) {
+    this.saveStudentService = saveStudentService;
     this.tokenFactory = tokenFactory;
+    this.findStudentService = findStudentService;
   }
 
   @PostMapping
-  public ResponseEntity<?> createStudent(@RequestBody final FindStudentService.CreateStudentRequest studentRequest,
+  public ResponseEntity<?> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
                                          final HttpServletRequest httpReq) {
-    String id = studentComponent.registerStudent(studentRequest);
+    String id = saveStudentService.registerStudent(studentRequest);
+    String email = studentRequest.getEmail();
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
-    return ResponseEntity.created(uri).header("token", tokenFactory.create(id)).build();
+    return ResponseEntity.created(uri).header("token", tokenFactory.create(id, email)).build();
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<FindStudentService.StudentResponse> findById(@PathVariable("id") final String id) {
-    return ok(studentComponent.getStudentById(id));
+    return ok(findStudentService.getStudentById(id));
   }
 }

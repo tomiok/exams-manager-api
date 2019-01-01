@@ -20,14 +20,15 @@ public class JwtTokenFactory implements TokenFactory {
   }
 
   @Override
-  public String create(final String id) {
-    return createJwt(id);
+  public String create(final String id, final String email) {
+    return createJwt(id, email);
   }
 
-  private String createJwt(final String id) {
+  private String createJwt(final String id, String email) {
     return Jwts
         .builder()
         .setSubject(id)
+        .claim("email", email)
         .setExpiration(getDateAfter(days))
         .signWith(SignatureAlgorithm.HS512, secretKey)
         .compact();
