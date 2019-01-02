@@ -1,6 +1,7 @@
 package org.tommy.examsmanager.component.exam.domain;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +27,7 @@ public class Exam {
   private boolean enrolled;
 
   public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled) {
-    validations(signature, date);
+    validations(signature, date, comments);
     this.signature = signature;
     this.date = date;
     this.comments = comments;
@@ -34,21 +35,22 @@ public class Exam {
   }
 
   public Exam(final String signature, final LocalDate date, final String comments) {
-    validations(signature, date);
+    validations(signature, date, comments);
     this.signature = signature;
     this.date = date;
     this.comments = comments;
   }
 
   public Exam(final String signature, final LocalDate date, final boolean enrolled) {
-    validations(signature, date);
+    validations(signature, date, null);
     this.signature = signature;
     this.date = date;
     this.enrolled = enrolled;
   }
 
-  private void validations(String signature, LocalDate date) {
+  private void validations(String signature, LocalDate date, String comments) {
     Validate.notBlank(signature);
     Validate.isTrue(date.isAfter(LocalDate.now()), "The exam should be at least one day after today");
+    Optional.ofNullable(comments).ifPresent(Validate::notBlank);
   }
 }
