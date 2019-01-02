@@ -21,25 +21,27 @@ public class TokenTest {
   @Test
   public void shouldReturnUserType_inTokenClaims() {
 
-    String token = createTokenWith("someId");
+    String email = "tomi@msn.com";
+    String token = createTokenWith("someId", email);
     assertThat(token).isNotNull();
     assertThat(token).isNotEmpty();
     assertThat(token).isNotBlank();
 
-    String claim = tokenExtractor.extract("unknown-claim", token);
-    assertThat(claim).isNull();
+    String claim = tokenExtractor.extract("email", token);
+    assertThat(claim).isEqualTo(email);
   }
 
   @Test
   public void shouldReturnTokenSubject() {
     String studentId = "student-id";
-    String token = createTokenWith(studentId);
-    String id = tokenExtractor.getUserId(token);
+    String email = "tomi@msn.com";
+    String token = createTokenWith(studentId, email);
+    String id = tokenExtractor.getStudentId(token);
 
     assertThat(id).isEqualTo(studentId);
   }
 
-  private String createTokenWith(final String id) {
-    return tokenFactory.create(id);
+  private String createTokenWith(final String id, String email) {
+    return tokenFactory.create(id, email);
   }
 }

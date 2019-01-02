@@ -1,12 +1,13 @@
-package org.tommy.examsmanager.component.student;
+package org.tommy.examsmanager.component.student.domain;
 
-import static org.tommy.examsmanager.component.student.StudentComponent.StudentResponse.fromModel;
+import static org.tommy.examsmanager.component.student.usecase.FindStudentService.StudentResponse.fromModel;
 
 import java.util.Optional;
 import org.tommy.examsmanager.application.cipher.ApplicationCipher;
 import org.tommy.examsmanager.component.shared.EntityNotFoundException;
 import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.domain.StudentRepository;
+import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 
 public class StudentEntityGateway {
 
@@ -20,13 +21,13 @@ public class StudentEntityGateway {
     this.applicationCipher = applicationCipher;
   }
 
-  Student saveStudent(final Student student) {
+  public Student saveStudent(final Student student) {
     Optional<String> pass = Optional.ofNullable(student.getPassword());
     pass.ifPresent(s -> student.setPassword(applicationCipher.encrypt(s)));
     return studentRepository.save(student);
   }
 
-  StudentComponent.StudentResponse findStudentById(final String id) {
+  public FindStudentService.StudentResponse findStudentById(final String id) {
     Student student = studentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     return fromModel(student);
   }

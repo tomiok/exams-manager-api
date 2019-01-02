@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.tommy.examsmanager.component.exam.domain.Exam;
 
@@ -24,6 +25,7 @@ public class Student {
 
   private String password;
 
+  @Indexed(unique = true)
   private String email;
 
   private List<Exam> exams = new ArrayList<>();
@@ -33,6 +35,10 @@ public class Student {
     this.lastName = lastName;
     this.password = password;
     this.email = email;
+  }
+
+  public void addExam(final Exam exam) {
+    this.exams.add(exam);
   }
 
 }

@@ -21,7 +21,7 @@ public class JwtExtractor implements TokenExtractor {
   }
 
   @Override
-  public String getUserId(final String token) {
+  public String getStudentId(final String token) {
     return Jwts
         .parser()
         .setSigningKey(secretKey)

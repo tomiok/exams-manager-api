@@ -1,13 +1,14 @@
-package org.tommy.examsmanager.component.student;
+package org.tommy.examsmanager.component.student.usecase;
 
 import org.apache.commons.lang3.Validate;
+import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 import org.tommy.examsmanager.component.student.domain.Student;
 
-public class StudentComponentImpl implements StudentComponent {
+public class SaveStudentServiceImpl implements SaveStudentService {
 
   private final StudentEntityGateway entityGateway;
 
-  StudentComponentImpl(final StudentEntityGateway entityGateway) {
+  public SaveStudentServiceImpl(final StudentEntityGateway entityGateway) {
     this.entityGateway = entityGateway;
   }
 
@@ -15,11 +16,6 @@ public class StudentComponentImpl implements StudentComponent {
   public String registerStudent(final CreateStudentRequest request) {
     Student student = createStudent(request);
     return entityGateway.saveStudent(student).getId();
-  }
-
-  @Override
-  public StudentResponse getStudentById(final String id) {
-    return entityGateway.findStudentById(id);
   }
 
   private static Student createStudent(final CreateStudentRequest request) {

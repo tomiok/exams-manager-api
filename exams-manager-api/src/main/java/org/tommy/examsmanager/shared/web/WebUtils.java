@@ -1,8 +1,9 @@
-package org.tommy.examsmanager.shared;
+package org.tommy.examsmanager.shared.web;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,12 @@ public final class WebUtils {
 
   public static String getAuthorizationToken(final HttpServletRequest request) {
     String bearerToken = request.getHeader("Authorization");
-    String token = bearerToken.substring("Bearer ".length(), bearerToken.length());
+    String token = bearerToken.substring("Bearer ".length());
+    validateToken(token);
     return token.trim();
+  }
+
+  private static void validateToken(String token) {
+    Validate.notBlank(token);
   }
 }

@@ -11,34 +11,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tommy.examsmanager.component.student.StudentComponent;
+import org.tommy.examsmanager.component.student.usecase.FindStudentService;
+import org.tommy.examsmanager.component.student.usecase.SaveStudentService;
 import org.tommy.examsmanager.component.token.TokenFactory;
-import org.tommy.examsmanager.shared.WebUtils;
+import org.tommy.examsmanager.shared.web.WebUtils;
 
 @RestController
 @RequestMapping(path = "/students")
 public class StudentController {
 
-  private final StudentComponent studentComponent;
+  private final SaveStudentService saveStudentService;
+
+  private final FindStudentService findStudentService;
 
   private final TokenFactory tokenFactory;
 
-  public StudentController(final StudentComponent studentComponent,
-                           final TokenFactory tokenFactory) {
-    this.studentComponent = studentComponent;
+  public StudentController(final SaveStudentService saveStudentService,
+                           final TokenFactory tokenFactory,
+                           final FindStudentService findStudentService) {
+    this.saveStudentService = saveStudentService;
     this.tokenFactory = tokenFactory;
+    this.findStudentService = findStudentService;
   }
 
   @PostMapping
-  public ResponseEntity<?> createStudent(@RequestBody final StudentComponent.CreateStudentRequest studentRequest,
+  public ResponseEntity<?> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
                                          final HttpServletRequest httpReq) {
-    String id = studentComponent.registerStudent(studentRequest);
+    String id = saveStudentService.registerStudent(studentRequest);
+    String email = studentRequest.getEmail();
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
-    return ResponseEntity.created(uri).header("token", tokenFactory.create(id)).build();
+    return ResponseEntity.created(uri).header("token", tokenFactory.create(id, email)).build();
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<StudentComponent.StudentResponse> findById(@PathVariable("id") final String id) {
-    return ok(studentComponent.getStudentById(id));
+  public ResponseEntity<FindStudentService.StudentResponse> findById(@PathVariable("id") final String id) {
+    return ok(findStudentService.getStudentById(id));
   }
 }
