@@ -1,4 +1,4 @@
-package org.tommy.examsmanager.shared;
+package org.tommy.examsmanager.shared.web;
 
 import java.net.URI;
 import java.net.URISyntaxException;

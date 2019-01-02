@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.tommy.examsmanager.component.exam.domain.Exam;
 import org.tommy.examsmanager.component.exam.usecase.SaveExamService;
 import org.tommy.examsmanager.component.token.TokenExtractor;
-import org.tommy.examsmanager.shared.WebUtils;
+import org.tommy.examsmanager.shared.web.WebUtils;
 
 @RestController
 @RequestMapping("/exams")

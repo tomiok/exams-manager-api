@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 import org.tommy.examsmanager.component.student.usecase.SaveStudentService;
 import org.tommy.examsmanager.component.token.TokenFactory;
-import org.tommy.examsmanager.shared.WebUtils;
+import org.tommy.examsmanager.shared.web.WebUtils;
 
 @RestController
 @RequestMapping(path = "/students")
