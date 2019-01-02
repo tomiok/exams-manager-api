@@ -25,7 +25,7 @@ public class SaveExamServiceImpl implements SaveExamService {
     Student s = studentEntityGateway.findById(req.getStudentId());
     s.addExam(examSaved);
 
-    //update student
+    //update student with the new exam
     studentEntityGateway.saveStudent(s);
 
     return examSaved;
