@@ -1,5 +1,7 @@
 package org.tommy.examsmanager.component.exam.web;
 
+import static org.springframework.http.ResponseEntity.ok;
+
 import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -27,14 +29,15 @@ public class ExamController {
   }
 
   @PostMapping
-  public ResponseEntity<?> addExam(@RequestBody CreateExamHttpReq bizReq,
-                                   HttpServletRequest httpReq) {
+  public ResponseEntity<Exam> addExam(@RequestBody CreateExamHttpReq bizReq,
+                                      HttpServletRequest httpReq) {
     String token = WebUtils.getAuthorizationToken(httpReq);
-    // String email = tokenExtractor.extract("email", token);
     String studentId = tokenExtractor.getStudentId(token);
+
+    //TODO logic to chose the right constructor if comments are coming from the request.
     Exam exam = saveExamService.saveExam(new SaveExamService.SaveExamRequest(studentId, bizReq.getSignature(),
         bizReq.isEnrolled(), LocalDate.parse(bizReq.getDate())));
 
-    return ResponseEntity.ok(exam);
+    return ok(exam);
   }
 }

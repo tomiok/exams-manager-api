@@ -8,7 +8,7 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "exams")
+@Document(collection = "exam")
 @Getter
 @Setter
 @NoArgsConstructor
