@@ -8,7 +8,7 @@ public class SaveStudentServiceImpl implements SaveStudentService {
 
   private final StudentEntityGateway entityGateway;
 
-  public SaveStudentServiceImpl(final StudentEntityGateway entityGateway) {
+  SaveStudentServiceImpl(final StudentEntityGateway entityGateway) {
     this.entityGateway = entityGateway;
   }
 
