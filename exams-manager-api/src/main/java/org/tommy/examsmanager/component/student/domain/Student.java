@@ -5,6 +5,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -31,8 +33,9 @@ public class Student {
   private List<Exam> exams = new ArrayList<>();
 
   public Student(final String firstName, final String lastName, final String password, final String email) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+    Validate.notNull(email, "email cannot be null");
+    this.firstName = toUpperCaseTheFirstLetter(firstName);
+    this.lastName = toUpperCaseTheFirstLetter(lastName);
     this.password = password;
     this.email = email;
   }
@@ -41,6 +44,24 @@ public class Student {
     this.exams.add(exam);
   }
 
+  private String toUpperCaseTheFirstLetter(String s) {
+    String low = s.toLowerCase();
+    char fistLetter = low.charAt(0);
+    String rest =  low.substring(1);
+    String upperCaseFirstLetter = Character.toString(fistLetter).toUpperCase();
+    return upperCaseFirstLetter.concat(rest);
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this)
+        .append("id", id)
+        .append("firstName", firstName)
+        .append("lastName", lastName)
+        .append("email", email)
+        .append("exams", exams)
+        .toString();
+  }
 }
 /*
 import com.mongodb.client.model.Filters;

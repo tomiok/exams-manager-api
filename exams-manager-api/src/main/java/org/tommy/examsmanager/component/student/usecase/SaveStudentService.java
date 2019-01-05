@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tommy.examsmanager.component.student.domain.Student;
 
 public interface SaveStudentService {
 
-  String registerStudent(final CreateStudentRequest request);
+  Student registerStudent(final CreateStudentRequest request);
 
   @AllArgsConstructor
   @NoArgsConstructor
