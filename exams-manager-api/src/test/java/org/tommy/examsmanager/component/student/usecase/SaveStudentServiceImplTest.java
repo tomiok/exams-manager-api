@@ -41,6 +41,17 @@ public class SaveStudentServiceImplTest {
     assertThat(actual.getLastName()).isEqualTo("Turing");
   }
 
+  @Test(expected = NullPointerException.class)
+  public void shouldFailGivenEmptyMail() {
+    SaveStudentService.CreateStudentRequest request
+        = createReq(
+        null,
+        "arnold",
+        "Schwarzer",
+        "Heav1pass56");
+    saveStudentService.registerStudent(request);
+  }
+
   private SaveStudentService.CreateStudentRequest createReq(
       String email,
       String firstName,
@@ -55,6 +66,4 @@ public class SaveStudentServiceImplTest {
 
     return req;
   }
-
-
 }
