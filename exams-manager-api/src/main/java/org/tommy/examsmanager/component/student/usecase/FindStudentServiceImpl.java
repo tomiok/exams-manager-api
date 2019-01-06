@@ -13,6 +13,11 @@ public class FindStudentServiceImpl implements FindStudentService {
 
   @Override
   public Student getStudentById(final String id) {
-    return entityGateway.findStudentById(id);
+    return entityGateway.findById(id);
+  }
+
+  @Override
+  public Student getStudentByEmail(final String email) {
+    return entityGateway.findByEmail(email);
   }
 }

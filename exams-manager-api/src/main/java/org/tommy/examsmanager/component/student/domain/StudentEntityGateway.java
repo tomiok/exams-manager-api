@@ -1,13 +1,8 @@
 package org.tommy.examsmanager.component.student.domain;
 
-import static org.tommy.examsmanager.component.student.usecase.FindStudentService.StudentResponse.fromModel;
-
 import java.util.Optional;
 import org.tommy.examsmanager.application.cipher.ApplicationCipher;
 import org.tommy.examsmanager.component.shared.EntityNotFoundException;
-import org.tommy.examsmanager.component.student.domain.Student;
-import org.tommy.examsmanager.component.student.domain.StudentRepository;
-import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 
 public class StudentEntityGateway {
 
@@ -27,11 +22,12 @@ public class StudentEntityGateway {
     return studentRepository.save(student);
   }
 
-  public Student findStudentById(final String id) {
-    return studentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-  }
-
   public Student findById(final String id) {
     return studentRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+  }
+
+  public Student findByEmail(final String email) {
+    return studentRepository.findByEmail(email).orElseThrow(()
+        -> new EntityNotFoundException("The student with email %s is not in the database"));
   }
 }

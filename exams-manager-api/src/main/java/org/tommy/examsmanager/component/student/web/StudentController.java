@@ -3,6 +3,7 @@ package org.tommy.examsmanager.component.student.web;
 import static org.springframework.http.ResponseEntity.ok;
 
 import java.net.URI;
+import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +37,17 @@ public class StudentController {
   }
 
   @PostMapping
-  public ResponseEntity<HttpStudentResponse> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
-                                         final HttpServletRequest httpReq) {
+  public ResponseEntity<HttpStudentResponse> createStudent(
+      @RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
+      final HttpServletRequest httpReq) {
     Student student = saveStudentService.registerStudent(studentRequest);
-    String id = student.getId();
+    String studentId = student.getId();
     String email = studentRequest.getEmail();
-    URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
+    URI idUri = WebUtils.getCreatedEntityUri(studentId, httpReq);
     return ResponseEntity
-        .created(uri)
-        .header("token", tokenFactory.create(id, email))
-        .body(null);
+        .created(idUri)
+        .header("token", tokenFactory.create(studentId, email))
+        .body(new HttpStudentResponse(student));
   }
 
   @GetMapping("/{id}")
@@ -53,5 +55,8 @@ public class StudentController {
     return ok(new HttpStudentResponse(findStudentService.getStudentById(id)));
   }
 
-  //TODO add get student by email
+  @GetMapping("/email/{email}")
+  public ResponseEntity<HttpStudentResponse> findByEmail(@PathVariable("email") final String email) {
+    return ok(new HttpStudentResponse(findStudentService.getStudentByEmail(email)));
+  }
 }
