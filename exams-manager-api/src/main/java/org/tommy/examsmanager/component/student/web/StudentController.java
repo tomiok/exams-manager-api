@@ -35,6 +35,7 @@ public class StudentController {
     this.findStudentService = findStudentService;
   }
 
+  //TODO add response entity
   @PostMapping
   public ResponseEntity<?> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
                                          final HttpServletRequest httpReq) {
@@ -49,4 +50,6 @@ public class StudentController {
   public ResponseEntity<FindStudentService.StudentResponse> findById(@PathVariable("id") final String id) {
     return ok(findStudentService.getStudentById(id));
   }
+
+  //TODO add get student by email
 }
