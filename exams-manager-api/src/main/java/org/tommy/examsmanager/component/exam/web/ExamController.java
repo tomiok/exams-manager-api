@@ -3,6 +3,7 @@ package org.tommy.examsmanager.component.exam.web;
 import static org.springframework.http.ResponseEntity.ok;
 
 import java.time.LocalDate;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,4 +41,19 @@ public class ExamController {
 
     return ok(exam);
   }
+
+  @PostMapping("/bulk")
+  public ResponseEntity<Exam> addExams(@RequestBody List<CreateExamHttpReq> bizReq,
+                                       HttpServletRequest httpReq) {
+    String token = WebUtils.getAuthorizationToken(httpReq);
+    String studentId = tokenExtractor.getStudentId(token);
+
+    //TODO logic to chose the right constructor if comments are coming from the request.
+    //TODO transform biz request in domain request
+
+    //Exam exam = saveExamService.saveExam();
+
+    return ok().build();
+  }
+
 }
