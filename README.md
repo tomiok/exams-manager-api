@@ -13,6 +13,11 @@ Using the maven wrapper
 
 `./mvnw spring-boot:run`
 
+
+## Swagger URL
+
+`localhost:8090/swagger-ui/html`
+
 ## Docker
 
 Soon :D
