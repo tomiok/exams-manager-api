@@ -8,13 +8,15 @@ import org.tommy.examsmanager.component.student.domain.Student;
 
 public interface FindStudentService {
 
-  StudentResponse getStudentById(final String id);
+  Student getStudentById(final String id);
 
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   @Setter
   class StudentResponse {
+
+    private String id;
 
     private String email;
 
@@ -23,7 +25,7 @@ public interface FindStudentService {
     private String lastName;
 
     public static StudentResponse fromModel(final Student student) {
-      return new StudentResponse(student.getEmail(), student.getFirstName(), student.getLastName());
+      return new StudentResponse(student.getId(), student.getEmail(), student.getFirstName(), student.getLastName());
     }
   }
 }

@@ -35,20 +35,22 @@ public class StudentController {
     this.findStudentService = findStudentService;
   }
 
-  //TODO add response entity
   @PostMapping
-  public ResponseEntity<?> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
+  public ResponseEntity<HttpStudentResponse> createStudent(@RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
                                          final HttpServletRequest httpReq) {
     Student student = saveStudentService.registerStudent(studentRequest);
     String id = student.getId();
     String email = studentRequest.getEmail();
     URI uri = WebUtils.getCreatedEntityUri(id, httpReq);
-    return ResponseEntity.created(uri).header("token", tokenFactory.create(id, email)).build();
+    return ResponseEntity
+        .created(uri)
+        .header("token", tokenFactory.create(id, email))
+        .body(null);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<FindStudentService.StudentResponse> findById(@PathVariable("id") final String id) {
-    return ok(findStudentService.getStudentById(id));
+  public ResponseEntity<HttpStudentResponse> findById(@PathVariable("id") final String id) {
+    return ok(new HttpStudentResponse(findStudentService.getStudentById(id)));
   }
 
   //TODO add get student by email

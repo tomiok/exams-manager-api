@@ -27,9 +27,8 @@ public class StudentEntityGateway {
     return studentRepository.save(student);
   }
 
-  public FindStudentService.StudentResponse findStudentById(final String id) {
-    Student student = studentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-    return fromModel(student);
+  public Student findStudentById(final String id) {
+    return studentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
   }
 
   public Student findById(final String id) {

@@ -1,5 +1,6 @@
 package org.tommy.examsmanager.component.student.usecase;
 
+import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 
 public class FindStudentServiceImpl implements FindStudentService {
@@ -11,7 +12,7 @@ public class FindStudentServiceImpl implements FindStudentService {
   }
 
   @Override
-  public StudentResponse getStudentById(final String id) {
+  public Student getStudentById(final String id) {
     return entityGateway.findStudentById(id);
   }
 }
