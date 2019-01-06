@@ -44,6 +44,10 @@ public class Student {
     this.exams.add(exam);
   }
 
+  public void addExam(final List<Exam> exams) {
+    this.exams.addAll(exams);
+  }
+
   private String toUpperCaseTheFirstLetter(String s) {
     String low = s.toLowerCase();
     char fistLetter = low.charAt(0);

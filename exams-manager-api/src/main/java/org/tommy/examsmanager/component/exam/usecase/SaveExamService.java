@@ -1,6 +1,7 @@
 package org.tommy.examsmanager.component.exam.usecase;
 
 import java.time.LocalDate;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.tommy.examsmanager.component.exam.domain.Exam;
@@ -8,6 +9,8 @@ import org.tommy.examsmanager.component.exam.domain.Exam;
 public interface SaveExamService {
 
   Exam saveExam(SaveExamRequest req);
+
+  List<Exam> saveExam(List<SaveExamRequest> requests);
 
   @Getter
   @Setter
@@ -19,8 +22,8 @@ public interface SaveExamService {
     private Boolean enrolled;
     private LocalDate date;
 
-    public SaveExamRequest(final String studentId, final String signature, final String comments,
-                           final Boolean enrolled, final LocalDate date) {
+    SaveExamRequest(final String studentId, final String signature, final String comments,
+                    final Boolean enrolled, final LocalDate date) {
       this.studentId = studentId;
       this.signature = signature;
       this.comments = comments;
