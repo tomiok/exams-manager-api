@@ -18,7 +18,7 @@ public class SwaggerConfig {
   @Bean
   public Docket productApi() {
     return new Docket(DocumentationType.SWAGGER_2)
-        .groupName("My Teacher product APIs")
+        .groupName("Exams manager product API")
         .select()
         .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
         .build()
