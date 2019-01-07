@@ -10,9 +10,8 @@ import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 
 public class SaveExamServiceImpl implements SaveExamService {
 
-  private ExamEntityGateway examEntityGateway;
-
   private final StudentEntityGateway studentEntityGateway;
+  private ExamEntityGateway examEntityGateway;
 
   SaveExamServiceImpl(final ExamEntityGateway examEntityGateway,
                       final StudentEntityGateway studentEntityGateway) {

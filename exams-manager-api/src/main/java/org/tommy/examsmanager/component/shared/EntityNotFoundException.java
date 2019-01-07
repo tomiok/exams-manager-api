@@ -6,7 +6,7 @@ public class EntityNotFoundException extends RuntimeException {
     super("The entity is not in the database.");
   }
 
-  public EntityNotFoundException(String message) {
-    super(message);
+  public EntityNotFoundException(String message, String... values) {
+    super(String.format(message, values));
   }
 }

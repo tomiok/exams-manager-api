@@ -20,4 +20,9 @@ public class FindStudentServiceImpl implements FindStudentService {
   public Student getStudentByEmail(final String email) {
     return entityGateway.findByEmail(email);
   }
+
+  @Override
+  public boolean updateProfileVisibility(final String id, final boolean visible) {
+    return entityGateway.updateVisibility(id, visible);
+  }
 }

@@ -7,6 +7,8 @@ public interface FindStudentService {
   Student getStudentById(String id);
 
   Student getStudentByEmail(String email);
+
+  boolean updateProfileVisibility(String id, boolean visible);
 }
 
 
