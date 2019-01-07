@@ -23,7 +23,7 @@ public class ApplicationCipher {
       cipher.init(Cipher.ENCRYPT_MODE, key);
       decryptCipher.init(Cipher.DECRYPT_MODE, key);
     } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-     throw new RuntimeException("cannot initialize the Ciphers", e);
+      throw new RuntimeException("cannot initialize the Ciphers", e);
     }
   }
 

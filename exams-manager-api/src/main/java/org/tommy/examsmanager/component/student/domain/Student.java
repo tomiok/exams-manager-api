@@ -32,6 +32,11 @@ public class Student {
 
   private List<Exam> exams = new ArrayList<>();
 
+  /**
+   * For default, the visibility for the others is false.
+   */
+  private boolean profileVisible;
+
   public Student(final String firstName, final String lastName, final String password, final String email) {
     Validate.notNull(email, "email cannot be null");
     this.firstName = toUpperCaseTheFirstLetter(firstName);
@@ -51,7 +56,7 @@ public class Student {
   private String toUpperCaseTheFirstLetter(String s) {
     String low = s.toLowerCase();
     char fistLetter = low.charAt(0);
-    String rest =  low.substring(1);
+    String rest = low.substring(1);
     String upperCaseFirstLetter = Character.toString(fistLetter).toUpperCase();
     return upperCaseFirstLetter.concat(rest);
   }
