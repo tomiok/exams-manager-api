@@ -2,6 +2,7 @@ package org.tommy.examsmanager.shared.web;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.function.Supplier;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -31,12 +32,22 @@ public final class WebUtils {
 
   public static String getAuthorizationToken(final HttpServletRequest request) {
     String bearerToken = request.getHeader("Authorization");
+    validator(bearerToken, IllegalArgumentException::new);
     String token = bearerToken.substring("Bearer ".length());
-    validateToken(token);
+    validator(token, IllegalArgumentException::new);
     return token.trim();
   }
 
-  private static void validateToken(String token) {
-    Validate.notBlank(token);
+  private static void validator(Object value, Supplier<RuntimeException> e) {
+    if (value == null) {
+      throw e.get();
+    }
+
+    if (value.getClass().equals(String.class)) {
+      String str = (String) value;
+      if (str.isEmpty() || str.trim().isEmpty()) {
+        throw e.get();
+      }
+    }
   }
 }
