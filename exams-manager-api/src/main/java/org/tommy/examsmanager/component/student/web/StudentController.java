@@ -57,12 +57,19 @@ public class StudentController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<HttpStudentResponse> findById(@PathVariable("id") final String id) {
+  public ResponseEntity<HttpStudentResponse> findById(
+      @PathVariable("id") final String id,
+      HttpServletRequest req
+      ) {
+    tokenExtractor.validate(WebUtils.getAuthorizationToken(req));
     return ok(new HttpStudentResponse(findStudentService.getStudentById(id)));
   }
 
   @GetMapping("/email/{email}")
-  public ResponseEntity<HttpStudentResponse> findByEmail(@PathVariable("email") final String email) {
+  public ResponseEntity<HttpStudentResponse> findByEmail(
+      @PathVariable("email") final String email,
+      HttpServletRequest req) {
+    tokenExtractor.validate(WebUtils.getAuthorizationToken(req));
     return ok(new HttpStudentResponse(findStudentService.getStudentByEmail(email)));
   }
 
@@ -70,6 +77,7 @@ public class StudentController {
   public ResponseEntity<UpdateVisibilityHttpReq> updateProfileVisibility(@PathVariable("visible") boolean visible,
                                                                          HttpServletRequest httpReq) {
     String token = WebUtils.getAuthorizationToken(httpReq);
+    tokenExtractor.validate(token);
     String studentId = tokenExtractor.getStudentId(token);
     boolean visibleSaved = findStudentService.updateProfileVisibility(studentId, visible);
 

@@ -33,6 +33,7 @@ public class ExamController {
   public ResponseEntity<Exam> addExam(@RequestBody CreateExamHttpReq bizReq,
                                       HttpServletRequest httpReq) {
     String token = WebUtils.getAuthorizationToken(httpReq);
+    tokenExtractor.validate(token);
     String studentId = tokenExtractor.getStudentId(token);
 
     //TODO logic to chose the right constructor if comments are coming from the request.
@@ -46,6 +47,7 @@ public class ExamController {
   public ResponseEntity<Exam> addExams(@RequestBody List<CreateExamHttpReq> bizReq,
                                        HttpServletRequest httpReq) {
     String token = WebUtils.getAuthorizationToken(httpReq);
+    tokenExtractor.validate(token);
     String studentId = tokenExtractor.getStudentId(token);
 
     //TODO logic to chose the right constructor if comments are coming from the request.

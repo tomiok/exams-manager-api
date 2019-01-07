@@ -29,4 +29,9 @@ public class JwtExtractor implements TokenExtractor {
         .getBody()
         .getSubject();
   }
+
+  @Override
+  public void validate(final String token) {
+    Jwts.parser().setSigningKey(secretKey).parse(token);
+  }
 }

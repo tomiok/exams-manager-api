@@ -5,4 +5,6 @@ public interface TokenExtractor {
   String extract(final String claim, final String token);
 
   String getStudentId(final String token);
+
+  void validate(final String token);
 }

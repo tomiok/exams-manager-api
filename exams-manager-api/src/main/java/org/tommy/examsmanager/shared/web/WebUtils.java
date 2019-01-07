@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.function.Supplier;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,9 +31,9 @@ public final class WebUtils {
 
   public static String getAuthorizationToken(final HttpServletRequest request) {
     String bearerToken = request.getHeader("Authorization");
-    validator(bearerToken, IllegalArgumentException::new);
+    validator(bearerToken, () -> new IllegalArgumentException("Authorization header is null"));
     String token = bearerToken.substring("Bearer ".length());
-    validator(token, IllegalArgumentException::new);
+    validator(token, () -> new IllegalArgumentException("JWT is null"));
     return token.trim();
   }
 
