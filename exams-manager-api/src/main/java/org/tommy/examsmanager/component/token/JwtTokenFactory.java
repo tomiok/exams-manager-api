@@ -19,6 +19,10 @@ public class JwtTokenFactory implements TokenFactory {
     this.days = days;
   }
 
+  private static Date getDateAfter(final int days) {
+    return from(LocalDate.now().plusDays(days).atStartOfDay(ZoneId.systemDefault()).toInstant());
+  }
+
   @Override
   public String create(final String id, final String email) {
     return createJwt(id, email);
@@ -32,9 +36,5 @@ public class JwtTokenFactory implements TokenFactory {
         .setExpiration(getDateAfter(days))
         .signWith(SignatureAlgorithm.HS512, secretKey)
         .compact();
-  }
-
-  private static Date getDateAfter(final int days) {
-    return from(LocalDate.now().plusDays(days).atStartOfDay(ZoneId.systemDefault()).toInstant());
   }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.tommy.examsmanager.component.shared.EntityNotFoundException;
 
 @ControllerAdvice
 public class ExceptionAdvice {
@@ -16,6 +17,13 @@ public class ExceptionAdvice {
     return ResponseEntity
         .status(HttpStatus.BAD_REQUEST)
         .body(new HttpErrorResponse("The entity is already in DB"));
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  public ResponseEntity<?> handleDocNotFound(EntityNotFoundException e) {
+    return ResponseEntity
+        .status(HttpStatus.BAD_REQUEST)
+        .body(new HttpErrorResponse(e.getMessage()));
   }
 
   @Getter

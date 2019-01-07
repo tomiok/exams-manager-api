@@ -30,7 +30,7 @@ public class ExamEntityGateway {
     return examRepository.saveAll(exams);
   }
 
-  public List<Exam> findByStudent(String email) {
+  public List<Exam> findExamsByStudent(String email) {
     List<Student> students = template.find(Query.query(where("email").is(email)), Student.class);
 
     return students

@@ -11,13 +11,13 @@ public class SaveStudentServiceImpl implements SaveStudentService {
     this.entityGateway = entityGateway;
   }
 
+  static Student createStudent(final CreateStudentRequest request) {
+    return new Student(request.getFirstName(), request.getLastName(), request.getPassword(), request.getEmail());
+  }
+
   @Override
   public Student registerStudent(final CreateStudentRequest request) {
     Student student = createStudent(request);
     return entityGateway.saveStudent(student);
-  }
-
-  static Student createStudent(final CreateStudentRequest request) {
-    return new Student(request.getFirstName(), request.getLastName(), request.getPassword(), request.getEmail());
   }
 }
