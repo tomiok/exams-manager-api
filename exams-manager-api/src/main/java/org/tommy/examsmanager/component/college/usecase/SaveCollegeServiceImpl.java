@@ -7,7 +7,7 @@ public class SaveCollegeServiceImpl implements SaveCollegeService {
 
   private final CollegeEntityGateway collegeEntityGateway;
 
-  public SaveCollegeServiceImpl(final CollegeEntityGateway collegeEntityGateway) {
+  SaveCollegeServiceImpl(final CollegeEntityGateway collegeEntityGateway) {
     this.collegeEntityGateway = collegeEntityGateway;
   }
 

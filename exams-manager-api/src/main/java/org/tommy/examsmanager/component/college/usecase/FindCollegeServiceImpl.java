@@ -12,7 +12,7 @@ public class FindCollegeServiceImpl implements FindCollegeService {
 
   private final CollegeEntityGateway collegeEntityGateway;
 
-  public FindCollegeServiceImpl(final CollegeEntityGateway collegeEntityGateway) {
+  FindCollegeServiceImpl(final CollegeEntityGateway collegeEntityGateway) {
     this.collegeEntityGateway = collegeEntityGateway;
   }
 
