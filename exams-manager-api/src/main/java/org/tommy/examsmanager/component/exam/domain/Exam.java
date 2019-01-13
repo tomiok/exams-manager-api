@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.apache.commons.lang3.Validate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.tommy.examsmanager.component.college.domain.College;
 
 @Document(collection = "exam")
 @Getter
@@ -25,6 +26,8 @@ public class Exam {
   private String comments;
 
   private boolean enrolled;
+
+  private College college;
 
   public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled) {
     validations(signature, date, comments);
@@ -46,6 +49,23 @@ public class Exam {
     this.signature = signature;
     this.date = date;
     this.enrolled = enrolled;
+  }
+
+  public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled,
+              final College college) {
+    this.signature = signature;
+    this.date = date;
+    this.comments = comments;
+    this.enrolled = enrolled;
+    this.college = college;
+  }
+
+  public Exam(final String signature, final LocalDate date, final boolean enrolled,
+              final College college) {
+    this.signature = signature;
+    this.date = date;
+    this.enrolled = enrolled;
+    this.college = college;
   }
 
   private void validations(String signature, LocalDate date, String comments) {
