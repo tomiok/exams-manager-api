@@ -6,8 +6,9 @@ public interface SaveCollegeService {
 
   /**
    *
-   * @param c The college to save.
+   * @param name The name of the College.
+   * @param address The address of the college
    * @return The college saved.
    */
-  College save(College c);
+  College save(String name, String address);
 }
