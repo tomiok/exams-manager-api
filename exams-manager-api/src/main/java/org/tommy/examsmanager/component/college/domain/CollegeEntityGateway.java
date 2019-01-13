@@ -7,7 +7,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Example;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.tommy.examsmanager.component.shared.EntityNotFoundException;
 
@@ -26,13 +25,11 @@ public class CollegeEntityGateway {
   }
 
   public List<College> findByName(String name) {
-    College example = new College();
-    example.setName(name);
     List<College> colleges = mongoOps
         .find(query(where("name")
-            .alike(Example.of(example))), College.class);
+            .regex(name)), College.class);
 
-    log.info("Founded %i colleges", colleges.size());
+    log.info("Founded %s colleges", colleges.size());
     return colleges;
   }
 
