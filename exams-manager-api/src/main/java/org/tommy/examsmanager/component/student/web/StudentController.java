@@ -86,7 +86,11 @@ public class StudentController {
   }
 
   @GetMapping
-  public Flowable<Student> students() {
+  public Flowable<Student> students(
+      HttpServletRequest request
+  ) {
+    String token = WebUtils.getAuthorizationToken(request);
+    tokenExtractor.validate(token);
     return findStudentService.getAll();
   }
 }
