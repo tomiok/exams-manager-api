@@ -1,5 +1,9 @@
 package org.tommy.examsmanager.component.student.usecase;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
+import java.util.List;
 import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 
@@ -24,5 +28,19 @@ public class FindStudentServiceImpl implements FindStudentService {
   @Override
   public boolean updateProfileVisibility(final String id, final boolean visible) {
     return entityGateway.updateVisibility(id, visible);
+  }
+
+  @Override
+  public Flowable<Student> getAll() {
+    List<Student> students = entityGateway.findAll();
+    return Flowable.fromIterable(students);
+  }
+
+  @Override
+  public Single<List<Student>> getAllEmitter() {
+    Observable<List<Student>> s = Observable.create(
+        emitter -> emitter.onNext(entityGateway.findAll())
+    );
+    return s.singleOrError();
   }
 }
