@@ -57,4 +57,8 @@ public class StudentEntityGateway {
     studentRepository.save(s);
     return visible;
   }
+
+  public List<Student> findAll() {
+    return ops.findAll(Student.class);
+  }
 }

@@ -2,6 +2,7 @@ package org.tommy.examsmanager.component.student.web;
 
 import static org.springframework.http.ResponseEntity.ok;
 
+import io.reactivex.Flowable;
 import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -60,7 +61,7 @@ public class StudentController {
   public ResponseEntity<HttpStudentResponse> findById(
       @PathVariable("id") final String id,
       HttpServletRequest req
-      ) {
+  ) {
     tokenExtractor.validate(WebUtils.getAuthorizationToken(req));
     return ok(new HttpStudentResponse(findStudentService.getStudentById(id)));
   }
@@ -82,5 +83,10 @@ public class StudentController {
     boolean visibleSaved = findStudentService.updateProfileVisibility(studentId, visible);
 
     return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new UpdateVisibilityHttpReq(visibleSaved));
+  }
+
+  @GetMapping
+  public Flowable<Student> students() {
+    return findStudentService.getAll();
   }
 }
