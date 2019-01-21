@@ -21,7 +21,7 @@ public class SaveExamServiceImpl implements SaveExamService {
 
   @Override
   public Exam saveExam(final SaveExamRequest req) {
-    Exam e = new Exam(req.getSignature(), req.getDate(), req.getEnrolled());
+    Exam e = Exam.fromRequest(req);
 
     Exam examSaved = examEntityGateway.saveExam(e);
     Student s = studentEntityGateway.findById(req.getStudentId());
@@ -39,12 +39,15 @@ public class SaveExamServiceImpl implements SaveExamService {
     List<Exam> exams =
         requests
             .stream()
-            .map(req -> new Exam(req.getSignature(), req.getDate(), req.getEnrolled()))
+            .map(Exam::fromRequest)
             .collect(toList());
 
     List<Exam> savedExams = examEntityGateway.saveExams(exams);
     Student s = studentEntityGateway.findById(studentId);
     s.addExam(savedExams);
+
+    //update student with exam
+    studentEntityGateway.saveStudent(s);
 
     return savedExams;
   }

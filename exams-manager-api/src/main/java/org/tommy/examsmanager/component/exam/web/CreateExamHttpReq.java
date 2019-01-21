@@ -1,9 +1,11 @@
 package org.tommy.examsmanager.component.exam.web;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
+import org.tommy.examsmanager.component.college.usecase.SaveCollegeService;
 
 @Getter
 @Setter
@@ -21,4 +23,7 @@ final class CreateExamHttpReq {
   private String date;
 
   private boolean enrolled;
+
+  @Valid
+  private SaveCollegeService.CollegeReq collegeReq;
 }

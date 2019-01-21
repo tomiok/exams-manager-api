@@ -9,6 +9,8 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.tommy.examsmanager.component.college.domain.College;
+import org.tommy.examsmanager.component.college.usecase.SaveCollegeService;
+import org.tommy.examsmanager.component.exam.usecase.SaveExamService;
 
 @Document(collection = "exam")
 @Getter
@@ -53,6 +55,8 @@ public class Exam {
 
   public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled,
               final College college) {
+
+    validations(signature, date, comments);
     this.signature = signature;
     this.date = date;
     this.comments = comments;
@@ -68,9 +72,24 @@ public class Exam {
     this.college = college;
   }
 
+  public static Exam fromRequest(final SaveExamService.SaveExamRequest req) {
+    Optional<LocalDate> dateOpt = Optional.ofNullable(req.getDate());
+    Optional<SaveCollegeService.CollegeReq> collOpt = Optional.ofNullable(req.getCollegeReq());
+
+    College college = collOpt.map(r ->
+        new College(r.getCollegeName(), r.getCollegeAddress()))
+        .orElse(null);
+
+    return new Exam(req.getSignature(), dateOpt.orElse(null), req.getComments(), req.getEnrolled(),
+        college);
+
+  }
+
   private void validations(String signature, LocalDate date, String comments) {
     Validate.notBlank(signature);
-    Validate.isTrue(date.isAfter(LocalDate.now()), "The exam should be at least one day after today");
+    if (date != null) {
+      Validate.isTrue(date.isAfter(LocalDate.now()), "The exam should be at least one day after today");
+    }
     Optional.ofNullable(comments).ifPresent(Validate::notBlank);
   }
 }

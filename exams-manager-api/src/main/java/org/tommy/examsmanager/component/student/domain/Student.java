@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.tommy.examsmanager.component.college.domain.College;
 import org.tommy.examsmanager.component.exam.domain.Exam;
 
 @Document(collection = "student")
