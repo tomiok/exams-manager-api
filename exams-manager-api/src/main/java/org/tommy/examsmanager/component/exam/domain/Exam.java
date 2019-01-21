@@ -31,12 +31,15 @@ public class Exam {
 
   private College college;
 
+  private boolean active;
+
   public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled) {
     validations(signature, date, comments);
     this.signature = signature;
     this.date = date;
     this.comments = comments;
     this.enrolled = enrolled;
+    this.active = true;
   }
 
   public Exam(final String signature, final LocalDate date, final String comments) {
@@ -44,6 +47,7 @@ public class Exam {
     this.signature = signature;
     this.date = date;
     this.comments = comments;
+    this.active = true;
   }
 
   public Exam(final String signature, final LocalDate date, final boolean enrolled) {
@@ -51,6 +55,7 @@ public class Exam {
     this.signature = signature;
     this.date = date;
     this.enrolled = enrolled;
+    this.active = true;
   }
 
   public Exam(final String signature, final LocalDate date, final String comments, final boolean enrolled,
@@ -62,6 +67,7 @@ public class Exam {
     this.comments = comments;
     this.enrolled = enrolled;
     this.college = college;
+    this.active = true;
   }
 
   public Exam(final String signature, final LocalDate date, final boolean enrolled,
@@ -70,6 +76,7 @@ public class Exam {
     this.date = date;
     this.enrolled = enrolled;
     this.college = college;
+    this.active = true;
   }
 
   public static Exam fromRequest(final SaveExamService.SaveExamRequest req) {

@@ -23,7 +23,8 @@ public class FindCollegeServiceImpl implements FindCollegeService {
 
   @Override
   public College findById(final String id) {
-    //TODO implement this
-    return null;
+    log.info("Fetching info from college id %s", id);
+
+    return collegeEntityGateway.findById(id);
   }
 }

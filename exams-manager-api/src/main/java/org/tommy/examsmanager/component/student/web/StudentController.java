@@ -74,23 +74,12 @@ public class StudentController {
     return ok(new HttpStudentResponse(findStudentService.getStudentByEmail(email)));
   }
 
-  @PatchMapping("/profile/{visible}")
-  public ResponseEntity<UpdateVisibilityHttpReq> updateProfileVisibility(@PathVariable("visible") boolean visible,
-                                                                         HttpServletRequest httpReq) {
-    String token = WebUtils.getAuthorizationToken(httpReq);
-    tokenExtractor.validate(token);
-    String studentId = tokenExtractor.getStudentId(token);
-    boolean visibleSaved = findStudentService.updateProfileVisibility(studentId, visible);
-
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new UpdateVisibilityHttpReq(visibleSaved));
-  }
-
   @GetMapping
   public Flowable<?> students(
       HttpServletRequest request
   ) {
-    //String token = WebUtils.getAuthorizationToken(request);
-    //tokenExtractor.validate(token);
+    String token = WebUtils.getAuthorizationToken(request);
+    tokenExtractor.validate(token);
     return findStudentService.getAll();
   }
 }

@@ -1,5 +1,6 @@
 package org.tommy.examsmanager.component.exam.web;
 
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.ResponseEntity.ok;
 
 import java.time.LocalDate;
@@ -36,26 +37,29 @@ public class ExamController {
     tokenExtractor.validate(token);
     String studentId = tokenExtractor.getStudentId(token);
 
-    //TODO logic to chose the right constructor if comments are coming from the request.
     Exam exam = saveExamService.saveExam(new SaveExamService.SaveExamRequest(studentId, bizReq.getSignature(),
-        bizReq.isEnrolled(), LocalDate.parse(bizReq.getDate())));
+        bizReq.isEnrolled(), LocalDate.parse(bizReq.getDate()), bizReq.getCollegeReq()));
 
     return ok(exam);
   }
 
   @PostMapping("/bulk")
-  public ResponseEntity<Exam> addExams(@RequestBody List<CreateExamHttpReq> bizReq,
-                                       HttpServletRequest httpReq) {
+  public ResponseEntity<List<Exam>> addExams(
+      @RequestBody List<CreateExamHttpReq> bizReqs,
+      HttpServletRequest httpReq) {
     String token = WebUtils.getAuthorizationToken(httpReq);
     tokenExtractor.validate(token);
     String studentId = tokenExtractor.getStudentId(token);
 
-    //TODO logic to chose the right constructor if comments are coming from the request.
-    //TODO transform biz request in domain request
+    List<SaveExamService.SaveExamRequest> examRequests = bizReqs
+        .stream()
+        .map(r ->
+            new SaveExamService.SaveExamRequest(studentId, r.getSignature(),
+                r.isEnrolled(), LocalDate.parse(r.getDate()), r.getCollegeReq()))
+        .collect(toList());
 
-    //Exam exam = saveExamService.saveExam();
+    List<Exam> exams = saveExamService.saveExam(examRequests);
 
-    return ok().build();
+    return ok(exams);
   }
-
 }

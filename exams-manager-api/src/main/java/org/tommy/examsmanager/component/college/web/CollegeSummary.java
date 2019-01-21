@@ -11,7 +11,7 @@ class CollegeSummary {
 
   private String address;
 
-  public CollegeSummary(final String name, final String address) {
+  CollegeSummary(final String name, final String address) {
     this.name = name;
     this.address = address;
   }

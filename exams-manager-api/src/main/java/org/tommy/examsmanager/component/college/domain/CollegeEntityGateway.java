@@ -33,6 +33,10 @@ public class CollegeEntityGateway {
     return colleges;
   }
 
+  public College findById(String id) {
+    return mongoOps.findById(id, College.class);
+  }
+
   private College findUniqueResult(List<College> founds, String name) {
     if (founds.isEmpty()) {
       throw new EntityNotFoundException("College not found", name);
