@@ -4,6 +4,7 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import java.util.List;
+import java.util.concurrent.Callable;
 import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 
@@ -32,8 +33,11 @@ public class FindStudentServiceImpl implements FindStudentService {
 
   @Override
   public Flowable<Student> getAll() {
-    List<Student> students = entityGateway.findAll();
-    return Flowable.fromIterable(students);
+    return Flowable
+        .fromCallable(entityGateway::findAll)
+        .parallel(10)
+        .sequential()
+        .flatMapIterable(e -> e);
   }
 
   @Override
