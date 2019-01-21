@@ -13,6 +13,7 @@ Using the maven wrapper
 
 `./mvnw spring-boot:run`
 
+- MongoDB local is required
 
 ## Swagger URL
 
