@@ -18,4 +18,11 @@ public class ExamUseCasesConfig {
       final StudentEntityGateway studentEntityGateway) {
     return new SaveExamServiceImpl(examEntityGateway, studentEntityGateway);
   }
+
+  @Bean
+  public DismissExamService dismissExamService(
+      final ExamEntityGateway examEntityGateway
+  ) {
+    return new DismissExamServiceImpl(examEntityGateway);
+  }
 }

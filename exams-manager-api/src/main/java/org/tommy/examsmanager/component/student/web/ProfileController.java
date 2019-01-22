@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tommy.examsmanager.component.exam.usecase.DismissExamService;
 import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 import org.tommy.examsmanager.component.token.TokenExtractor;
 import org.tommy.examsmanager.shared.web.WebUtils;
@@ -19,10 +20,14 @@ public class ProfileController {
 
   private final FindStudentService findStudentService;
 
+  private final DismissExamService dismissExamService;
+
   public ProfileController(final TokenExtractor tokenExtractor,
-                           final FindStudentService findStudentService) {
+                           final FindStudentService findStudentService,
+                           final DismissExamService dismissExamService) {
     this.tokenExtractor = tokenExtractor;
     this.findStudentService = findStudentService;
+    this.dismissExamService = dismissExamService;
   }
 
   @PatchMapping("/{visible}")
@@ -35,12 +40,13 @@ public class ProfileController {
   }
 
   @PatchMapping("/dismiss/exam/{examId}")
-  public ResponseEntity<?> dismissExam(
-      @PathVariable
+  public ResponseEntity<Void> dismissExam(
+      @PathVariable String examId,
       HttpServletRequest httpReq
   ) {
     String studentId = validateTokenAndGetStudentId(httpReq, tokenExtractor);
-    return null;
+    dismissExamService.dismiss(studentId, examId);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   private static String validateTokenAndGetStudentId(
@@ -52,5 +58,8 @@ public class ProfileController {
     return tokenExtractor.getStudentId(token);
   }
 
-  //TODO finish APIs here. dismiss exam - see profile - see exams (filters) - dismiss exams with a background service
+  //TODO finish APIs here
+  // - see profile
+  // - see exams (filters)
+  // - dismiss exams with a background service
 }

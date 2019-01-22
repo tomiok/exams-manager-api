@@ -12,6 +12,6 @@ public class DismissExamServiceImpl implements DismissExamService {
 
   @Override
   public void dismiss(final String studentId, final String examId) {
-    
+    examEntityGateway.dismissExam(studentId, examId);
   }
 }
