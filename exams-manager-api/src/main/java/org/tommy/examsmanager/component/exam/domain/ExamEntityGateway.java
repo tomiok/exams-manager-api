@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.tommy.examsmanager.component.shared.EntityNotFoundException;
 import org.tommy.examsmanager.component.student.domain.Student;
 
 public class ExamEntityGateway {
@@ -38,5 +39,17 @@ public class ExamEntityGateway {
         .map(Student::getExams)
         .flatMap(Collection::stream)
         .collect(toList());
+  }
+
+  public void dismissExam(String studentId, String examId) {
+    Student s = template.findById(studentId, Student.class);
+    if (s == null) {
+      throw new EntityNotFoundException("Student with ID %s is not present in the database", studentId);
+    }
+
+    s.getExams()
+        .stream()
+        .filter(e -> e.getId().equals(examId))
+        .forEach(e -> e.setActive(false));
   }
 }
