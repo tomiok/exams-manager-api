@@ -54,11 +54,19 @@ public class ProfileController {
   public ResponseEntity<?> myProfile(
       HttpServletRequest request
   ) {
-
+    //TODO finish this
     String studentId  = validateTokenAndGetStudentId(request, tokenExtractor);
     return null;
   }
 
+  @GetMapping("/exams")
+  public ResponseEntity<?> getExams(
+      HttpServletRequest request
+  ) {
+    // TODO finish this
+    String studentId = validateTokenAndGetStudentId(request, tokenExtractor);
+    return null;
+  }
 
   private static String validateTokenAndGetStudentId(
       HttpServletRequest request,
@@ -69,8 +77,5 @@ public class ProfileController {
     return tokenExtractor.getStudentId(token);
   }
 
-  //TODO finish APIs here
-  // - see profile
-  // - see exams (filters)
-  // - dismiss exams with a background service
+  //TODO finish API dismiss exams with a background service
 }
