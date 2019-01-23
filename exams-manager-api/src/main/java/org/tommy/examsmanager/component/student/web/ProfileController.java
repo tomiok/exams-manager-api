@@ -1,5 +1,8 @@
 package org.tommy.examsmanager.component.student.web;
 
+import static org.springframework.http.ResponseEntity.ok;
+
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +11,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tommy.examsmanager.component.exam.domain.Exam;
 import org.tommy.examsmanager.component.exam.usecase.DismissExamService;
+import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.usecase.FindStudentService;
 import org.tommy.examsmanager.component.token.TokenExtractor;
 import org.tommy.examsmanager.shared.web.WebUtils;
@@ -51,21 +56,21 @@ public class ProfileController {
   }
 
   @GetMapping
-  public ResponseEntity<?> myProfile(
+  public ResponseEntity<StudentHttpRes> myProfile(
       HttpServletRequest request
   ) {
-    //TODO finish this
-    String studentId  = validateTokenAndGetStudentId(request, tokenExtractor);
-    return null;
+    String studentId = validateTokenAndGetStudentId(request, tokenExtractor);
+    Student s = findStudentService.getStudentById(studentId);
+    return ok(new StudentHttpRes(s));
   }
 
   @GetMapping("/exams")
-  public ResponseEntity<?> getExams(
+  public ResponseEntity<List<Exam>> getExams(
       HttpServletRequest request
   ) {
-    // TODO finish this
     String studentId = validateTokenAndGetStudentId(request, tokenExtractor);
-    return null;
+    Student s = findStudentService.getStudentById(studentId);
+    return ok(s.getExams());
   }
 
   private static String validateTokenAndGetStudentId(
@@ -76,6 +81,4 @@ public class ProfileController {
     tokenExtractor.validate(token);
     return tokenExtractor.getStudentId(token);
   }
-
-  //TODO finish API dismiss exams with a background service
 }

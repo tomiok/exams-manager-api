@@ -5,10 +5,8 @@ import static org.springframework.http.ResponseEntity.ok;
 import io.reactivex.Flowable;
 import java.net.URI;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,7 +42,7 @@ public class StudentController {
   }
 
   @PostMapping
-  public ResponseEntity<HttpStudentResponse> createStudent(
+  public ResponseEntity<StudentHttpRes> createStudent(
       @RequestBody final SaveStudentService.CreateStudentRequest studentRequest,
       final HttpServletRequest httpReq) {
     Student student = saveStudentService.registerStudent(studentRequest);
@@ -54,24 +52,24 @@ public class StudentController {
     return ResponseEntity
         .created(idUri)
         .header("token", tokenFactory.create(studentId, email))
-        .body(new HttpStudentResponse(student));
+        .body(new StudentHttpRes(student));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<HttpStudentResponse> findById(
+  public ResponseEntity<StudentHttpRes> findById(
       @PathVariable("id") final String id,
       HttpServletRequest req
   ) {
     tokenExtractor.validate(WebUtils.getAuthorizationToken(req));
-    return ok(new HttpStudentResponse(findStudentService.getStudentById(id)));
+    return ok(new StudentHttpRes(findStudentService.getStudentById(id)));
   }
 
   @GetMapping("/email/{email}")
-  public ResponseEntity<HttpStudentResponse> findByEmail(
+  public ResponseEntity<StudentHttpRes> findByEmail(
       @PathVariable("email") final String email,
       HttpServletRequest req) {
     tokenExtractor.validate(WebUtils.getAuthorizationToken(req));
-    return ok(new HttpStudentResponse(findStudentService.getStudentByEmail(email)));
+    return ok(new StudentHttpRes(findStudentService.getStudentByEmail(email)));
   }
 
   @GetMapping

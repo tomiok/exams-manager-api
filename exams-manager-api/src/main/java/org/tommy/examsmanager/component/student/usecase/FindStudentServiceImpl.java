@@ -4,7 +4,6 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import java.util.List;
-import java.util.concurrent.Callable;
 import org.tommy.examsmanager.component.student.domain.Student;
 import org.tommy.examsmanager.component.student.domain.StudentEntityGateway;
 
